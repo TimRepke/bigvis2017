@@ -58,19 +58,19 @@
   - find interval of stable connectivity patterns (nothing changes) -> from there find periods of change (vs fixed time intervals)
   
 ## Ways to display dimensions
-- time
+- time (resource allocation?)
   - slider
   - heatmaps
   - depth
   - intensity
   - path
-- topics
+- topics (what is the corpus about?)
   - areas
   - heatmaps
-- people
+- people (criminal networks?)
   - nodes
   - stacked objects (including time or topics)
-- emails
+- emails (influence, information diffusion)
   - edges/paths
   - dots along a path
   - embedding
