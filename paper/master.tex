@@ -7,6 +7,7 @@ screen
 ]{acmart}
 
 \usepackage{booktabs} % For formal tables
+\usepackage{balance}
 
 % ----------------------
 % fancyref
@@ -82,12 +83,14 @@ screen
 %\setcopyright{none}
 %\setcopyright{acmcopyright}
 %\setcopyright{acmlicensed}
-\setcopyright{rightsretained}
+%\setcopyright{rightsretained}
 %\setcopyright{usgov}
 %\setcopyright{usgovmixed}
 %\setcopyright{cagov}
 %\setcopyright{cagovmixed}
-
+\copyrightyear{2018} 
+\acmYear{2018} 
+\setcopyright{acmcopyright}
 
 % DOI
 %\acmDOI{10.475/123_4}
@@ -96,7 +99,7 @@ screen
 %\acmISBN{123-4567-24-567/08/06}
 
 %Conference
-\acmConference[BigVis'17]{International Workshop on Big Data Visual Exploration and Analytics at EDBT/ICDT}{March 2018}{Vienna, Austria} 
+\acmConference[BigVis'18]{International Workshop on Big Data Visual Exploration and Analytics at EDBT/ICDT}{March 2018}{Vienna, Austria} 
 
 %\acmYear{1997}
 %\copyrightyear{2016}
@@ -113,7 +116,9 @@ screen
 
 
 \begin{document}
-\title{Who's the Boss? A Topic-aware Network Visualisation to Explore Organisational Structures based on Emails}
+\title%
+[Topic-aware Network Visualisation to Explore Organisational Structures]%
+{Who's the Boss? A Topic-aware Network Visualisation to Explore Organisational Structures based on Emails}
 %\titlenote{Produces the permission block, and copyright information}
 %\subtitle{Extended Abstract}
 %\subtitlenote{The full version of the author's guide is available as \texttt{acmart.pdf} document}
@@ -139,9 +144,7 @@ screen
 
 
 \begin{abstract}
-	This paper provides a sample of a \LaTeX\ document which conforms,
-	somewhat loosely, to the formatting guidelines for
-	ACM SIG Proceedings.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa enim. Nullam efficitur urna vel aliquam suscipit. Mauris feugiat ut mauris vitae ultrices. Nam varius velit eu fringilla tempus. Quisque non nunc sem. Donec porta odio sit amet ante rutrum ullamcorper. Vivamus ac mauris blandit, rutrum neque et, suscipit urna. Sed commodo scelerisque sapien. Quisque ullamcorper velit sit amet molestie iaculis. Nullam at erat justo. Vivamus ac mauris blandit, rutrum neque et, suscipit urna. Sed commodo scelerisque sapien. Quisque ullamcorper velit sit amet molestie iaculis. Nullam at erat justo.
 \end{abstract}
 
 %
@@ -182,11 +185,12 @@ screen
 %
 %\keywords{ACM proceedings, \LaTeX, text tagging}
 
+% Deadline 26.12.2017 02:00am
 \received{December 2017}
 %\received[revised]{January 2018}
 %\received[accepted]{January 2018}
 
-\settopmatter{printacmref=false, printfolios=true}
+\settopmatter{printccs=false, printacmref=false, printfolios=true}
 
 \maketitle
 

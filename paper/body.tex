@@ -1,15 +1,24 @@
 \section{Introduction}
+% abstract + intro fill first page
 
-introduce topic, challenges, rough goal, related work
+% information society, modern, communication, integral part of daily life, substantial amounts of data, prior research either topics or networks (not both)
 
-\begin{figure*}
-	% alternatively use teaserfigure (manual page 18)
-	% A special kind of figure is used for many two-column conference proceedings. This figure is placed just after the authors, but before the main text. The environment teaserfigure is used for these figures. This environment must be used before \maketitle
-	\dummyfig{0.3}{0.8}{mockup}
-	\caption{A sample black and white graphic
-		that needs to span two columns of text.}
-\end{figure*}
+In our modern information society, we produce substantial amounts of data each day, where a large portion of it comes from the communication through social media platforms or email.
+Given a dataset of the exchanged information over a year, it is practically impossible to gain an overview or quick insights into the data.
+Journalists for example find themselves in this position whenever they receive huge collections of leaked data.
+A system that automatically generates an interactive overview of latent structures and topics may support the search for potential stories and identify relevant documents.
 
+In this paper, we propose an interactive visualisation that positions individuals on a two-dimensional canvas such that it reflects their community in which they communicate as well as the topical relatedness.
+To do so, we utilise document embeddings which project the content of a message into a high dimensional semantic space as well as node2vec, which projects nodes in a network graph into a latent space reflecting similar connectivity.
+
+%In recent years, research has enabled us to position words or even entire documents in a high dimensional semantic space and visualise it on a two-dimensional plane.
+%Similarly, there is a multitude of approaches to layout a network graph to convey coherent structures.
+
+% related work
+% - topic maps/topic vis/textvis
+% - network vis
+% TODO: cite simething from nikos bikakis (http://www.dblab.ntua.gr/~bikakis/)
+% ( organises the workshop )
 \cite{chen2009exemplar}
 \cite{dang2017cactustree}
 \cite{efrat2015mapsets}
@@ -23,12 +32,122 @@ introduce topic, challenges, rough goal, related work
 \cite{tao2017honvis}
 \cite{wei2010tiara}
 \cite{white2009exploratory}
+\cite{yang2014overlapping}
 
-\section{Objectives and Approaches}
-describe objectives and what data is available and how that can be used
+related work
+\begin{itemize}
+	\item two parts: network vis, textvis
+	\item embeddings: doc2vec, node2vec
+	\item hierarchical/level of detail
+	\item map semantic
+	\item cartograph close to us, but no network
+	\item highlight missing link between text and network in all research
+\end{itemize}
 
-\section{System Description}
-describe concrete system and outline algorithmic approach
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa enim. Nullam efficitur urna vel aliquam suscipit. Mauris feugiat ut mauris vitae ultrices. Nam varius velit eu fringilla tempus. Quisque non nunc sem. Donec porta odio sit amet ante rutrum ullamcorper. Vivamus ac mauris blandit, rutrum neque et, suscipit urna. Sed commodo scelerisque sapien. Quisque ullamcorper velit sit amet molestie iaculis. Nullam at erat justo. Nulla in erat luctus, condimentum elit et, posuere enim. Nullam ut ex in massa dignissim vulputate at nec mauris. Donec cursus nibh sed libero posuere, a molestie risus pulvinar. Sed iaculis ante lacinia varius pretium. Suspendisse euismod arcu vel ex dignissim tristique. Mauris sed ex eu nisi efficitur faucibus at in libero.
+
+Praesent purus mauris, auctor eget viverra et, rhoncus in nisi. In ut sagittis nulla. Pellentesque fringilla enim leo, nec tempor dolor mollis et. Proin sed rutrum orci. Nulla imperdiet et purus at ornare. Etiam quis dictum erat. Maecenas aliquet vel erat in hendrerit. Aenean a purus sit amet odio placerat tempus. Quisque quis eros odio. Nulla eu accumsan nulla.
+
+Praesent porttitor nulla sit amet neque aliquet vestibulum. Cras nec tellus augue. Suspendisse tincidunt sapien luctus, feugiat nisi nec, venenatis lorem. In aliquet id velit ut vulputate. Vestibulum aliquet interdum dui molestie interdum. Cras pretium bibendum justo. Phasellus congue laoreet turpis, at tincidunt ante fermentum vitae. Cras id nisi at lorem hendrerit dictum eget ullamcorper ipsum. Donec vulputate id urna quis interdum.
+
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut sit amet cursus neque, volutpat tempus lacus. Cras ultricies enim eu ipsum bibendum eleifend. Donec gravida, sapien id pellentesque faucibus, mi diam pharetra ipsum, non pretium justo ante a ante. In ut accumsan ante. Aenean tempus egestas metus, quis laoreet nisl porta in. Phasellus sed sem vitae nisi egestas ullamcorper. Integer pellentesque nisl erat, quis imperdiet neque aliquet vel. Cras sollicitudin, orci quis interdum ullamcorper, nunc sapien dapibus dui, ut lobortis tellus lorem ac mi. Aenean risus orci, iaculis sed mattis sed, fringilla vitae lectus. Phasellus ac metus mollis, maximus magna sed, porta ligula.
+
+Pellentesque ac lorem lorem. Nulla suscipit nulla id eros blandit, eget eleifend ipsum euismod. Duis nulla turpis, egestas ut lacus non, ultrices iaculis velit. Duis tincidunt volutpat dolor, vel tempor ante laoreet at. Sed ultricies magna nec enim feugiat ullamcorper. Maecenas iaculis laoreet lorem eget vehicula. Quisque dignissim nisi urna, egestas venenatis erat malesuada non. Nullam vel metus in arcu dictum egestas a nec velit. Morbi lorem ex, luctus a maximus id, blandit id ex. Duis libero orci, consectetur ut erat sed, finibus convallis elit. Curabitur vitae orci eu sapien sodales tempor.
+
+Pellentesque ac lorem lorem. Nulla suscipit nulla id eros blandit, eget eleifend ipsum euismod. Duis nulla turpis, egestas ut lacus non, ultrices iaculis velit. Duis tincidunt volutpat dolor, vel tempor ante laoreet at. Sed ultricies magna nec enim feugiat ullamcorper. Maecenas iaculis laoreet lorem eget vehicula. Quisque dignissim nisi urna, egestas venenatis erat malesuada non. 
+
+%introduce topic, challenges, rough goal, related work
+
+\begin{figure*}
+	% alternatively use teaserfigure (manual page 18)
+	% A special kind of figure is used for many two-column conference proceedings. This figure is placed just after the authors, but before the main text. The environment teaserfigure is used for these figures. This environment must be used before \maketitle
+	%\dummyfig{0.3}{0.8}{mockup}
+	\includegraphics[width=0.9\textwidth]{mockup2}
+	\caption{Semantic landscape of email contents and dominant communication patterns (drawn mockup)}
+	\label{fig:mockup}
+\end{figure*}
+
+
+
+\section{Interactive Visualisation}
+% this section fills second page (inkl mockup)
+% describe objectives and what data is available and how that can be used
+Systems for document exploration largely vary in what they display and how the user interacts with them, which is already reflected in the way the data is preprocessed or enriched with external sources. 
+The design is primarily dictated by the objectives users have.
+
+We distinguish between a bottom-up approach, in which a user initiates an exploration from a specific document or entity, and a top-down approach, in which the system provides an abstract overview of the entire document collection and the user incrementally refines the search narrowing in to just a few documents.
+While a bottom-up approach can provide detailed information from the start, it requires a-priori knowledge by the user.
+In contrast, the top-down approach can help a user without prior knowledge to get a sense for the data by visualising high level latent structures of the communication network or the topical distribution.
+
+In the scope of this work we primarily consider documents to be emails or data attached to them.
+The sender, recipients, time, and content can directly be extracted from the raw data.
+We call these -- and results from further processing -- \textit{dimensions} that can be visualised.
+From the contents one may infer named entities, topics, embeddings, or salient phases from the content, while the communication network spanned by sender-recipient pairs can be used to detect salient structures and hierarchies.
+The temporal information enables the previously mentioned data to be analysed over time to detect evolving or changing patterns.
+
+There are numerous ways to visualise each dimension on its own or as a combination of many.
+The user's objective implies which dimension is needed, optional, or irrelevant and also which priority each dimension gets in the visualisation.
+From the wide range of possibilities, we strive for a system which helps journalists or investigators to explore a large collection of documents without any prior knowledge about the content and individuals involved.
+
+Thus, we consider the names or email addresses of senders and recipients (from now on \textit{individuals}), the communication network, semantic vector representations of email contents, and as part of an overlay the timestamps of emails.
+\Fref{fig:mockup} shows a manually drawn mockup of the system we are working on.
+
+The individuals are represented as nodes positioned such that densely connected communities are visually clustered.
+Edges describe the email traffic, where the opacity and thickness is used to indicate the frequency of messages between the nodes they connect.
+The semantic representations of emails are used to place dots on a background layer which we call the \textit{document landscape}.
+This landscape is used as additional input to the graph layout algorithm, aiming to place a node within corresponding semantic regions.
+The colouring of regions in the landscape is derived from densely connected communities in the communication graph.
+We select representative words for densely populated areas in the landscape, so that users get a rough idea about subjects in that area.
+The aforementioned timestamps of emails can be used to generate a heatmap overlay to show the activity in a certain time interval which is controlled by a slider.
+
+Similar to modern geographical maps, zooming into a region reveals more details.
+In our case, less prominent individuals and their connections are shown along with additional salient phrases from the document landscape.
+Selecting a node will not only highlight connected edges but may also temporarily show more edges which were previously hidden at that zoom level.
+The user will also be able to retrieve documents with the help of a selection rectangle or clicking dots in the document landscape.
+
+%We further distinguish between domain oriented and open systems. 
+%A domain oriented system may have specific vis, extract, ext data,...
+
+
+\section{System Architecture}
+% fills full page 3 and max the first half of left column page 4
+%describe concrete system and outline algorithmic approach
+Visualising communication networks in a topic-aware fashion to explore documents and salient structures is not straight forward, as different layout objectives may produce contradicting results.
+In this section, we describe algorithmic approaches behind the system we are working on.
+For a discussion of engineering aspects on how to store, serve, and render the map-like data, we refer to the Cartograph~stack~\cite{sen2017cartograph}, as we will focus on the process how to extract the information that the map is generated from.
+
+% self citation -> quagga for preprocessing?
+
+One na\"ive approach to combine a flat visualisation of the document embedding space and communication graph is to assume the embedded emails to be fixed and place the nodes of the graph close to where most emails are projected to.
+This way, many edges may cross each other and communities can't be visually distinguished.
+Furthermore, in case emails of an individual contain two dominant subjects which are far apart in the semantic space, ideal placement of the node becomes ambiguous.
+
+We assume, that the communication between two individuals 
+
+optimise towards
+stable balance
+
+
+
+parts of the system: prep, server, frontend
+\begin{itemize}
+\item node2vec
+\item node clustering/communities
+\item doc2vec
+\item tsne for docs in cluster
+\item find stable layout
+\item calculate metric for node importance
+\item calculate metric for salient phrases
+\item use last three for map generation with zoom levels
+\item mapserver, database, leaflet (see cartograph)
+\end{itemize}
+
+describe idea of fully neural approach: feed doc2vec and node2vec to second stage network, use that representation only; discuss outcome (nice because fully semantic and no intervention, bad because outcome unpredictable and potentially visually not practical)
 
 \section{Conclusion and Future Work}
-asd
+% fills left column on page 4, right column mostly references
+\begin{itemize}
+	\item nice app of big data, find salient structures
+	\item show how we are awesome
+	\item future: implement it!
+\end{itemize}
