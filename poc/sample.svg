@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 350 400"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06"
+   sodipodi:docname="sample.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="543.87906"
+     inkscape:cy="949.83119"
+     inkscape:document-units="mm"
+     inkscape:current-layer="people"
+     showgrid="false"
+     inkscape:window-width="1916"
+     inkscape:window-height="1163"
+     inkscape:window-x="1920"
+     inkscape:window-y="35"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+
+  <g
+     inkscape:groupmode="layer"
+     id="connections"
+     inkscape:label="Connections">
+  </g>
+  <g
+     inkscape:label="People"
+     inkscape:groupmode="layer"
+     id="people">
+    <circle
+       style="fill:#0073ff;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4504"
+       cx="22.2061"
+       cy="13.234371"
+       r="1.984375"
+       person="A" />
+    <circle
+       style="fill:#0073ff;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4504-1"
+       cx="37.986603"
+       cy="13.706848"
+       r="1.984375"
+       person="B" />
+    <circle
+       style="fill:#0073ff;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4504-1-7"
+       cx="55.751488"
+       cy="14.462797"
+       r="1.984375"
+       person="C" />
+    <circle
+       style="fill:#0073ff;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4504-1-8"
+       cx="68.413696"
+       cy="14.084816"
+       r="1.984375"
+       person="D" />
+    <circle
+       style="fill:#0073ff;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4504-1-8-5"
+       cx="82.587799"
+       cy="13.139881"
+       r="1.984375"
+       person="E" />
+    <circle
+       style="fill:#0073ff;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4504-1-8-7"
+       cx="98.084824"
+       cy="12.383931"
+       r="1.984375"
+       person="F" />
+    <circle
+       style="fill:#0073ff;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4504-1-8-4"
+       cx="111.69196"
+       cy="12.761912"
+       r="1.984375"
+       person="G" />
+    <circle
+       style="fill:#0073ff;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4504-1-8-1"
+       cx="126.05505"
+       cy="14.084814"
+       r="1.984375"
+       person="H" />
+    <circle
+       style="fill:#0073ff;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4504-1-8-8"
+       cx="137.77232"
+       cy="12.950888"
+       r="1.984375"
+       person="I" />
+    <circle
+       style="fill:#0073ff;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4504-1-8-59"
+       cx="162.52977"
+       cy="13.139883"
+       r="1.984375"
+       person="J" />
+    <circle
+       style="fill:#0073ff;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4504-1-8-75"
+       cx="148.92261"
+       cy="13.328873"
+       r="1.984375"
+       person="K" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="mails"
+     inkscape:label="Mails">
+  <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612"
+       cx="23.718006"
+       cy="37.802826"
+       r="1.0394346"
+       sender="A"
+       recipient="B" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-3"
+       cx="28.915178"
+       cy="39.598213"
+       r="1.0394346"
+       sender="A"
+       recipient="B" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-8"
+       cx="20.410715"
+       cy="55.473213"
+       r="1.0394346"
+       sender="A"
+       recipient="B" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-83"
+       cx="28.915178"
+       cy="49.236607"
+       r="1.0394346"
+       sender="A"
+       recipient="B" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-1"
+       cx="116.98363"
+       cy="87.034225"
+       r="1.0394346"
+       sender="C"
+       recipient="B" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89"
+       cx="53.105656"
+       cy="86.845238"
+       r="1.0394346"
+       sender="A"
+       recipient="D" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-6"
+       cx="78.808037"
+       cy="107.44494"
+       r="1.0394346"
+       sender="A"
+       recipient="D" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-4"
+       cx="84.666664"
+       cy="105.93304"
+       r="1.0394346"
+       sender="A"
+       recipient="D" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-3"
+       cx="78.808037"
+       cy="100.26339"
+       r="1.0394346"
+       sender="A"
+       recipient="D" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-33"
+       cx="34.017857"
+       cy="44.889881"
+       r="1.0394346"
+       sender="K"
+       recipient="D" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-8"
+       cx="27.214285"
+       cy="55.473213"
+       r="1.0394346"
+       sender="I"
+       recipient="D" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60"
+       cx="142.686"
+       cy="56.607143"
+       r="1.0394346"
+       sender="A"
+       recipient="K" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-4"
+       cx="151.00728"
+       cy="59.263756"
+       r="1.0394346"
+       sender="A"
+       recipient="K" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-8"
+       cx="151.8091"
+       cy="50.978401"
+       r="1.0394346"
+       sender="C"
+       recipient="K" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-88"
+       cx="141.25194"
+       cy="46.033913"
+       r="1.0394346"
+       sender="A"
+       recipient="K" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-9"
+       cx="81.116302"
+       cy="103.76413"
+       r="1.0394346"
+       sender="A"
+       recipient="K" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-7"
+       cx="49.444862"
+       cy="89.331573"
+       r="1.0394346"
+       sender="D"
+       recipient="K" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-76"
+       cx="56.126602"
+       cy="90.133385"
+       r="1.0394346"
+       sender="A"
+       recipient="K" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-43"
+       cx="140.58377"
+       cy="101.62598"
+       r="1.0394346"
+       sender="B"
+       recipient="K" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-43-0"
+       cx="144.32555"
+       cy="104.29867"
+       r="1.0394346"
+       sender="B"
+       recipient="K" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-43-3"
+       cx="132.03114"
+       cy="104.56594"
+       r="1.0394346"
+       sender="B"
+       recipient="K" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-43-09"
+       cx="145.92917"
+       cy="51.913845"
+       r="1.0394346"
+       sender="B"
+       recipient="K" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-43-2"
+       cx="45.435822"
+       cy="124.34389"
+       r="1.0394346"
+       sender="B"
+       recipient="K" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-43-5"
+       cx="38.486813"
+       cy="120.60211"
+       r="1.0394346"
+       sender="B"
+       recipient="K" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-43-4"
+       cx="39.823158"
+       cy="127.81839"
+       r="1.0394346"
+       sender="B"
+       recipient="I" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-43-4-9"
+       cx="126.95303"
+       cy="128.35292"
+       r="1.0394346"
+       sender="B"
+       recipient="I" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-43-4-4"
+       cx="29.934187"
+       cy="52.448383"
+       r="1.0394346"
+       sender="B"
+       recipient="I" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-43-4-6"
+       cx="27.261492"
+       cy="43.895756"
+       r="1.0394346"
+       sender="B"
+       recipient="I" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-43-4-92"
+       cx="145.92917"
+       cy="56.724693"
+       r="1.0394346"
+       sender="B"
+       recipient="I" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-43-4-2"
+       cx="52.384827"
+       cy="90.935196"
+       r="1.0394346"
+       sender="B"
+       recipient="I" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-43-4-47"
+       cx="137.91107"
+       cy="105.10048"
+       r="1.0394346"
+       sender="B"
+       recipient="I" />
+    <circle
+       style="fill:#00ff7c;fill-opacity:1;stroke:none;stroke-width:0.03527778;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4612-89-60-43-4-7"
+       cx="150.74002"
+       cy="54.319267"
+       r="1.0394346"
+       sender="B"
+       recipient="I" />
+  </g>
+</svg>

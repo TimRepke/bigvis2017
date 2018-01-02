@@ -115,39 +115,89 @@ The user will also be able to retrieve documents with the help of a selection re
 Visualising communication networks in a topic-aware fashion to explore documents and salient structures is not straight forward, as different layout objectives may produce contradicting results.
 In this section, we describe algorithmic approaches behind the system we are working on.
 For a discussion of engineering aspects on how to store, serve, and render the map-like data, we refer to the Cartograph~stack~\cite{sen2017cartograph}, as we will focus on the process how to extract the information that the map is generated from.
-
 % self citation -> quagga for preprocessing?
 
-One na\"ive approach to combine a flat visualisation of the document embedding space and communication graph is to assume the embedded emails to be fixed and place the nodes of the graph close to where most emails are projected to.
-This way, many edges may cross each other and communities can't be visually distinguished.
-Furthermore, in case emails of an individual contain two dominant subjects which are far apart in the semantic space, ideal placement of the node becomes ambiguous.
+As described in the previous section, we visualise the embedded emails as dots in a two-dimensional landscape in which individuals are placed as nodes connected by edges.
+By reducing all emails between two individuals into one edge, we reduce the visual complexity of the network, which makes it easier to detect salient structures.
+However, that comes with the trade-off, that nodes and edges cannot be perfectly placed in the landscape to cover all semantic aspects of the communication between them, but rather an estimate.
 
-We assume, that the communication between two individuals 
+Our proposed algorithm to find a stable network layout has three stages, namely an \textit{(i) initialisation phase} which creates the landscape and roughly places nodes and connections, an \textit{(ii) update phase} which iteratively updates the node placement towards a better fit, and finally a \textit{(iii) post processing phase} where edges become splines to better match the landscape.
 
-optimise towards
-stable balance
+%One na\"ive approach to combine a flat visualisation of the document embedding space and communication graph is to assume the embedded emails to be fixed and place the nodes of the graph close to where most emails are projected to.
+%This way, many edges may cross each other and communities can't be visually distinguished.
+%Furthermore, in case emails of an individual contain two dominant subjects which are far apart in the semantic space, ideal placement of the node becomes ambiguous.
 
+%We assume, that the communication between two individuals 
 
+%optimise towards
+%stable balance
 
-parts of the system: prep, server, frontend
-\begin{itemize}
-\item node2vec
-\item node clustering/communities
-\item doc2vec
-\item tsne for docs in cluster
-\item find stable layout
-\item calculate metric for node importance
-\item calculate metric for salient phrases
-\item use last three for map generation with zoom levels
-\item mapserver, database, leaflet (see cartograph)
-\end{itemize}
+\paragraph{Initialising the Landscape.}
+First, we need to generate the document landscape.
+Therefore, we train document embeddings~\cite{le2014distributed,hu2017} over all emails and use these embeddings to infer high dimensional semantic vector representations for each email.
+These vectors are then reduced in dimensionality using t-SNE~\cite{maaten2008visualizing}, which retains possible clustering of emails in the higher dimensional space and can be used to place them onto a two-dimensional map.
+The size of a dot printed on the map is determined by the number of recipients of that email.
 
-describe idea of fully neural approach: feed doc2vec and node2vec to second stage network, use that representation only; discuss outcome (nice because fully semantic and no intervention, bad because outcome unpredictable and potentially visually not practical)
+We also need to initialise the layout of the communication network.
+The staring position of a node representing an individual is determined by summing up the two-dimensional vectors of all emails he or she sent or received normalised by the absolute number.
+This way, we not only place a node in the semantically relevant region but also implicitly group related individuals into communities as frequent communication biases this normalised sum.
+Straight edges are added between the nodes if the respective individuals exchanged emails.
+Note, that in the Enron corpus, many edges only represent a small number of emails.
+Applying a variable threshold can reduce the computational load in later stages, as these edges will not impact the overall layout very much.
+They can be added again as the user requests a detailed visualisation by zooming in or other interactions.
+
+%filter low freq, no influence on layout
+
+Lastly, we apply node2vec~\cite{grover2016node2vec} to the communication graph, as it will be used to measure the neighbourhood similarity between two nodes in later stages of the algorithm.
+
+\paragraph{Adjusting the Network Layout.}
+The first stage of our proposed algorithm produces a fixed document landscape and roughly fits the communication network on top. 
+We now aim to incrementally adapt the layout of the graph to better reflect salient structures in the network and aligning the edges to the contained emails in the landscape.
+Therefore we define a score quantifying how well the current layout fits these objectives:
+\begin{equation}
+\sum_{n}^{nodes}\left[\sum_{m}^{\substack{emails\\from~n}}\frac{len(E(n, R(m)))}{sim(n, R(m))}\theta+dist(m, E(n,R(m)))\eta\right]
+\label{eq:score}
+\end{equation}
+
+where $R(m)$ is the recipient of email $m$, $len$ the length of an edge $E$, $sim$ the node2vec based similarity reflecting the neighbourhood affiliation, and $dist$ the shortest distance from the email $m$ to an edge. The parameters $\theta$ and $\eta$ are used to adjust the layout towards a better semantic or structural fit respectively.
+
+\begin{figure}
+	% alternatively use teaserfigure (manual page 18)
+	% A special kind of figure is used for many two-column conference proceedings. This figure is placed just after the authors, but before the main text. The environment teaserfigure is used for these figures. This environment must be used before \maketitle
+	\dummyfig{0.15}{0.2}{post init example}
+	\dummyfig{0.15}{0.2}{post layout example}
+	%\includegraphics[width=0.9\textwidth]{mockup2}
+	\caption{Schematic example after initialisation (left) and after layout optimisation (right). Nodes and edges of the graph are blue, green dots are embedded emails, dotted lines are email--edge relationships, arrows are update vectors}
+	\label{fig:minisample}
+\end{figure}
+
+\Fref{fig:minisample} schematically shows a small possible scenario after initialisation.
+There, the network layout does not yet reflect our objectives very well as communities are spread apart and mixed.
+We incrementally move the nodes towards a stable minimum of \Fref{eq:score}.
+The direction 
+
+\paragraph{Post Processing.}
+bend and bundle edges, calculate network "topology" (community density as heatmap or topological lines), colour the graph (using topic clustering in case layout isn't close to landscape or community colouring if communities aren't visually close enough -> future research)
+
+%parts of the system: prep, server, frontend
+%\begin{itemize}
+%\item node2vec
+%\item node clustering/communities
+%\item doc2vec
+%\item tsne for docs in cluster
+%\item find stable layout
+%\item calculate metric for node importance
+%\item calculate metric for salient phrases
+%\item use last three for map generation with zoom levels
+%\item mapserver, database, leaflet (see cartograph)
+%\end{itemize}
+%
+%describe idea of fully neural approach: feed doc2vec and node2vec to second stage network, use that representation only; discuss outcome (nice because fully semantic and no intervention, bad because outcome unpredictable and potentially visually not practical)
 
 \section{Conclusion and Future Work}
 % fills left column on page 4, right column mostly references
 \begin{itemize}
-	\item nice app of big data, find salient structures
-	\item show how we are awesome
-	\item future: implement it!
+	\item nice app of big data to find salient communication structures in semantic space
+	\item highlight contribution (combine network vis and text vis)
+	\item future: implement it, refine algorithm, evaluate usefulness
 \end{itemize}
