@@ -4,70 +4,109 @@
 % information society, modern, communication, integral part of daily life, substantial amounts of data, prior research either topics or networks (not both)
 
 In our modern information society, we produce substantial amounts of data each day, where a large portion of it comes from the communication through social media platforms or email.
-Given a dataset of the exchanged information over a year, it is practically impossible to gain an overview or quick insights into the data.
-Journalists for example find themselves in this position whenever they receive huge collections of leaked data.
-A system that automatically generates an interactive overview of latent structures and topics may support the search for potential stories and identify relevant documents.
+Given a dataset of the exchanged information over a year or more, it is practically impossible to gain an overview or quick insights into the data.
+Journalists, for example, find themselves in this position whenever they receive huge collections of leaked data.
+A system that automatically generates an overview of latent structures and topics may support the exploratory search for potential stories and related documents as well as a basic understanding of the data.
 
-In this paper, we propose an interactive visualisation that positions individuals on a two-dimensional canvas such that it reflects their community in which they communicate as well as the topical relatedness.
-To do so, we utilise document embeddings which project the content of a message into a high dimensional semantic space as well as node2vec, which projects nodes in a network graph into a latent space reflecting similar connectivity.
+In this paper, we propose an interactive visualisation that positions individuals on a two-dimensional canvas such that it reflects their community in which they communicate along with their the topical relatedness.
+Therefore, we utilise document embeddings which project the content of a message into a high dimensional semantic space and graph embeddings, which project nodes in a network graph into a latent space reflecting their relatedness.
 
-%In recent years, research has enabled us to position words or even entire documents in a high dimensional semantic space and visualise it on a two-dimensional plane.
-%Similarly, there is a multitude of approaches to layout a network graph to convey coherent structures.
+The proposed system is best described as an exploratory search engine.
+As such, it is well suited for users unfamiliar with the domain and terminology in the collection at hand and they can iteratively discover new associations to support the information seeking process of an open-ended goal~\cite{white2009exploratory}.
+% p9: exploratory strategies are used continually to allow people to discover new associations, kinds of knowledge, and decision making, they are often motivated by a complex information problem, a poor understanding of terminology and information space structure
+% p10: people engaged in exploratory searches are generally: (1) unfamiliar with the domain of their goal (i.e., need to learn about the topic in order to understand how to achieve their goal);
+% p10: Exploratory search is a specialization of information seeking, which describes the activity of attempting to obtain information through a combination of querying and collection browsing.
+In particular, we focus on visualising the entire collection in one overview in which related aspects are spatially close and therefore reflecting a latent context.
+To our knowledge, prior research only considers either network or text visualisation.
+We aim to combine these two approaches so that it can be applied to document collections with an underlying network, such as an email corpus.
+For that goal, we consider the concept of map-like visualisations~\cite{pang2017creating}, which was previously used for both network and text data.
 
-% related work
-% - topic maps/topic vis/textvis
-% - network vis
-% TODO: cite simething from nikos bikakis (http://www.dblab.ntua.gr/~bikakis/)
-% ( organises the workshop )
-\cite{chen2009exemplar}
-\cite{dang2017cactustree}
-\cite{efrat2015mapsets}
-\cite{fortuna2005visualization}
-\cite{fried2014maps}
-\cite{gronemann2012drawing}
-\cite{hildenbrand2016flexible}
-\cite{pang2017creating}
-\cite{sallaberry2016contact}
-\cite{sen2017cartograph}
-\cite{tao2017honvis}
-\cite{wei2010tiara}
-\cite{white2009exploratory}
-\cite{yang2014overlapping}
+There are various objectives for network visualisations.
+For example, ContactTrees~\cite{sallaberry2016contact} makes use of the metaphor of a growing tree to show highlight how relationships form and change based on the interactions as branches and leaves.
+Although this reflects temporal aspects of dynamic networks well, it focuses on one person as the root, thus an overview of the entirety of a network is lost.
+A CactusTree~\cite{dang2017cactustree} on the other hand is a technique to represent hierarchical structures with the goal of untangling overlaid bundles of intersecting edges, making distant connections more apparent.
+In networks with evolving relations, higher order dependencies may get lost in traditional visualisations.
+HoNVis~\cite{tao2017honvis} adds nodes to encode dependencies in chains of interactions similar to conditional probabilities.
+Usually though, a communication network has many nodes and overlapping connections already, so Yang et al.~\cite{yang2014overlapping} rather focus on discovering overlapping cores in the network to improve the identification of community boundaries, providing an overview of global latent structures.
+Similarly, Gronemann et al.~\cite{gronemann2012drawing} use the metaphor of islands and hills to visualise clustered graphs, making densely connected communities clearly noticeable.
+The edges are bundled and follow valleys of the resulting topology, thus making relationships between other communities hard to follow.
+MapSets~\cite{efrat2015mapsets} assume a graph that was laid out using embeddings reflecting communities.
+An algorithm then draws regions around clusters of nodes, such that the bounding shapes are contiguous and non-overlapping, but yet abstract.
+Another approach to visualise networks at full scale is to aggregate nodes based on their spatial distribution and thereby allowing for a simple exploration as proposed by Hildenbrand et al.~\cite{hildenbrand2016flexible}, who also added contour lines and heatmap overlays to emphasise latent structures.
 
-related work
-\begin{itemize}
-	\item two parts: network vis, textvis
-	\item embeddings: doc2vec, node2vec
-	\item hierarchical/level of detail
-	\item map semantic
-	\item cartograph close to us, but no network
-	\item highlight missing link between text and network in all research
-\end{itemize}
+% ==== GRAPH VIS ====
+%\cite{dang2017cactustree}
+%visualization technique for representing hierarchical datasets, specific goal of untangling overlaid bundles of intersecting edges.
+%\cite{sallaberry2016contact}
+%highlight how relationships form and change based upon interactions among actors, as well as how relationships and networks vary by contact attributes
+%
+%\cite{tao2017honvis}
+%higher order visualisation of network by adding (splitting) nodes to encode higher-order dependencies (ie conditional probability), Objective: (ie) discover ports relevant for species invasion, extract higher order dependencies (ie not pairwise, but tuple of len 3 -> cond prob of last node given first node)
+%\cite{yang2014overlapping}
+%discover overlapping "cores" in network graph for more accurate communities and improved identification of community boundaries
+%
+%\cite{gronemann2012drawing}
+%clustered graph as map with islands
+%\cite{efrat2015mapsets}
+%visualising embedded+clustered graphs, find regions, how to map them out nicely
+%\cite{hildenbrand2016flexible}
+%aggregates nodes based on their spatial distribution, thereby allowing for visual exploration of large graphs, contour lines/heatmap
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa enim. Nullam efficitur urna vel aliquam suscipit. Mauris feugiat ut mauris vitae ultrices. Nam varius velit eu fringilla tempus. Quisque non nunc sem. Donec porta odio sit amet ante rutrum ullamcorper. Vivamus ac mauris blandit, rutrum neque et, suscipit urna. Sed commodo scelerisque sapien. Quisque ullamcorper velit sit amet molestie iaculis. Nullam at erat justo. Nulla in erat luctus, condimentum elit et, posuere enim. Nullam ut ex in massa dignissim vulputate at nec mauris. Donec cursus nibh sed libero posuere, a molestie risus pulvinar. Sed iaculis ante lacinia varius pretium. Suspendisse euismod arcu vel ex dignissim tristique. Mauris sed ex eu nisi efficitur faucibus at in libero.
+Document visualisation aims to visualise the content, such that users gain quick insights into topics, latent phrases, or trends.
+Tiara~\cite{wei2010tiara} extracts topics and derives time-sensitive keywords to depict evolving subjects over time as stacked plots.
+Other approaches often project documents into a latent space, either using topic models or embeddings.
+Creating scatter-plots of embedded documents of a large corpus may result in a very dense and unclear layout, so Chen et al.~\cite{chen2009exemplar} developed an algorithm to reduce over-full visualisations by picking representative documents.
+A different approach is taken by Fortuna et al.~\cite{fortuna2005visualization}, who don't show documents directly, but generate a heatmap of the populated canvas and overlay it with salient phrases at more densely populated areas from the underlying documents in that region.
+Friedl et al.~\cite{fried2014maps} extend that concept by drawing clear lines drawing clear lines between regions and colouring them.
+They also add edges between salient phrases based on co-occurrences in the texts and adjusting their size reflecting the count.
+Most recently Cartograph~\cite{sen2017cartograph} was proposed, which is visually very similar to previous approaches, but uses pre-rendered information of different resolution and map technology to enable a responsive interactive visualisation. Regions are coloured based on underlying ontologies from a knowledge-base.
 
-Praesent purus mauris, auctor eget viverra et, rhoncus in nisi. In ut sagittis nulla. Pellentesque fringilla enim leo, nec tempor dolor mollis et. Proin sed rutrum orci. Nulla imperdiet et purus at ornare. Etiam quis dictum erat. Maecenas aliquet vel erat in hendrerit. Aenean a purus sit amet odio placerat tempus. Quisque quis eros odio. Nulla eu accumsan nulla.
+% === TEXT VIS ===
+%\cite{wei2010tiara}
+%Extract topics and derive time-sensitive keywords to depict the content evolution of each topic over time visualised as stacked plots
+%\cite{chen2009exemplar}
+%pick exemplars to reduce over-full visualisation (scatter plot)
+%\cite{fortuna2005visualization}
+%visualise text corpus (heatmaps + dots for docs + salient phrases)
+%\cite{fried2014maps}
+%maps of computer science, similar but draws clear regions and edges reflecting co-occurrence
+%\cite{sen2017cartograph}
+%Visualisation System for thematic maps that position Concepts (ie Named Entities) into semantic space on map, pre-render and use maps technology
 
-Praesent porttitor nulla sit amet neque aliquet vestibulum. Cras nec tellus augue. Suspendisse tincidunt sapien luctus, feugiat nisi nec, venenatis lorem. In aliquet id velit ut vulputate. Vestibulum aliquet interdum dui molestie interdum. Cras pretium bibendum justo. Phasellus congue laoreet turpis, at tincidunt ante fermentum vitae. Cras id nisi at lorem hendrerit dictum eget ullamcorper ipsum. Donec vulputate id urna quis interdum.
+% 
+%\cite{wang2016linked}
+%which combines link and label information with content information to learn document representations for classification
+%\cite{goyal2017graph}
+%graph embedding survey
+%\cite{bikakis2016exploration}
+% visual exploration of big liked semantic data - challenges
 
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut sit amet cursus neque, volutpat tempus lacus. Cras ultricies enim eu ipsum bibendum eleifend. Donec gravida, sapien id pellentesque faucibus, mi diam pharetra ipsum, non pretium justo ante a ante. In ut accumsan ante. Aenean tempus egestas metus, quis laoreet nisl porta in. Phasellus sed sem vitae nisi egestas ullamcorper. Integer pellentesque nisl erat, quis imperdiet neque aliquet vel. Cras sollicitudin, orci quis interdum ullamcorper, nunc sapien dapibus dui, ut lobortis tellus lorem ac mi. Aenean risus orci, iaculis sed mattis sed, fringilla vitae lectus. Phasellus ac metus mollis, maximus magna sed, porta ligula.
 
-Pellentesque ac lorem lorem. Nulla suscipit nulla id eros blandit, eget eleifend ipsum euismod. Duis nulla turpis, egestas ut lacus non, ultrices iaculis velit. Duis tincidunt volutpat dolor, vel tempor ante laoreet at. Sed ultricies magna nec enim feugiat ullamcorper. Maecenas iaculis laoreet lorem eget vehicula. Quisque dignissim nisi urna, egestas venenatis erat malesuada non. Nullam vel metus in arcu dictum egestas a nec velit. Morbi lorem ex, luctus a maximus id, blandit id ex. Duis libero orci, consectetur ut erat sed, finibus convallis elit. Curabitur vitae orci eu sapien sodales tempor.
-
-Pellentesque ac lorem lorem. Nulla suscipit nulla id eros blandit, eget eleifend ipsum euismod. Duis nulla turpis, egestas ut lacus non, ultrices iaculis velit. Duis tincidunt volutpat dolor, vel tempor ante laoreet at. Sed ultricies magna nec enim feugiat ullamcorper. Maecenas iaculis laoreet lorem eget vehicula. Quisque dignissim nisi urna, egestas venenatis erat malesuada non. 
+%related work
+%\begin{itemize}
+%	\item two parts: network vis, textvis
+%	\item embeddings: doc2vec, node2vec
+%	\item hierarchical/level of detail
+%	\item map semantic
+%	\item cartograph close to us, but no network
+%	\item highlight missing link between text and network in all research
+%\end{itemize}
 
 %introduce topic, challenges, rough goal, related work
 
 \begin{figure*}
-	% alternatively use teaserfigure (manual page 18)
-	% A special kind of figure is used for many two-column conference proceedings. This figure is placed just after the authors, but before the main text. The environment teaserfigure is used for these figures. This environment must be used before \maketitle
-	%\dummyfig{0.3}{0.8}{mockup}
-	\includegraphics[width=0.9\textwidth]{mockup2}
-	\caption{Semantic landscape of email contents and dominant communication patterns (drawn mockup)}
-	\label{fig:mockup}
+	%	\centering
+	\begin{tikzpicture}[]
+	\node[draw,anchor=north west,inner sep=1] at (0,0) {%
+		\includegraphics[%
+		trim={8cm 32cm 1cm 4cm},% left bottom right top
+		clip,%
+		width=0.9\textwidth]{network}%
+	};%
+	\end{tikzpicture}
+	\caption{Traditional basic visualisation of a communication graph from 2000 emails using force layout}
+	\label{fig:netvis}
 \end{figure*}
-
-
 
 \section{Interactive Visualisation}
 % this section fills second page (inkl mockup)
@@ -92,18 +131,20 @@ From the wide range of possibilities, we strive for a system which helps journal
 Thus, we consider the names or email addresses of senders and recipients (from now on \textit{individuals}), the communication network, semantic vector representations of email contents, and as part of an overlay the timestamps of emails.
 \Fref{fig:mockup} shows a manually drawn mockup of the system we are working on.
 
-The individuals are represented as nodes positioned such that densely connected communities are visually clustered.
-Edges describe the email traffic, where the opacity and thickness is used to indicate the frequency of messages between the nodes they connect.
-The semantic representations of emails are used to place dots on a background layer which we call the \textit{document landscape}.
-This landscape is used as additional input to the graph layout algorithm, aiming to place a node within corresponding semantic regions.
-The colouring of regions in the landscape is derived from densely connected communities in the communication graph.
-We select representative words for densely populated areas in the landscape, so that users get a rough idea about subjects in that area.
-The aforementioned timestamps of emails can be used to generate a heatmap overlay to show the activity in a certain time interval which is controlled by a slider.
 
-Similar to modern geographical maps, zooming into a region reveals more details.
-In our case, less prominent individuals and their connections are shown along with additional salient phrases from the document landscape.
-Selecting a node will not only highlight connected edges but may also temporarily show more edges which were previously hidden at that zoom level.
-The user will also be able to retrieve documents with the help of a selection rectangle or clicking dots in the document landscape.
+\begin{figure*}
+	%	\centering
+	\begin{tikzpicture}[]
+	\node[draw,anchor=north west,inner sep=1] at (0,0) {%
+		\includegraphics[%
+		trim={1cm 13.5cm 20cm 10cm},% left bottom right top
+		clip,%
+		width=0.9\textwidth]{poc}%
+	};%
+	\end{tikzpicture}
+	\caption{Rendering of the visualisation after initialisation (very early prototype)}
+	\label{fig:poc}
+\end{figure*}
 
 %We further distinguish between domain oriented and open systems. 
 %A domain oriented system may have specific vis, extract, ext data,...
@@ -161,17 +202,17 @@ Therefore we define a score quantifying how well the current layout fits these o
 
 where $R(m)$ is the recipient of email $m$, $len$ the length of an edge $E$, $sim$ the node2vec based similarity reflecting the neighbourhood affiliation, and $dist$ the shortest distance from the email $m$ to an edge. The parameters $\theta$ and $\eta$ are used to adjust the layout towards a better semantic or structural fit respectively.
 
-\begin{figure}
-	% alternatively use teaserfigure (manual page 18)
-	% A special kind of figure is used for many two-column conference proceedings. This figure is placed just after the authors, but before the main text. The environment teaserfigure is used for these figures. This environment must be used before \maketitle
-	\dummyfig{0.15}{0.2}{post init example}
-	\dummyfig{0.15}{0.2}{post layout example}
-	%\includegraphics[width=0.9\textwidth]{mockup2}
-	\caption{Schematic example after initialisation (left) and after layout optimisation (right). Nodes and edges of the graph are blue, green dots are embedded emails, dotted lines are email--edge relationships, arrows are update vectors}
-	\label{fig:minisample}
-\end{figure}
+%\begin{figure}
+%	% alternatively use teaserfigure (manual page 18)
+%	% A special kind of figure is used for many two-column conference proceedings. This figure is placed just after the authors, but before the main text. The environment teaserfigure is used for these figures. This environment must be used before \maketitle
+%	\dummyfig{0.15}{0.2}{post init example}
+%	\dummyfig{0.15}{0.2}{post layout example}
+%	%\includegraphics[width=0.9\textwidth]{mockup2}
+%	\caption{Schematic example after initialisation (left) and after layout optimisation (right). Nodes and edges of the graph are blue, green dots are embedded emails, dotted lines are email--edge relationships, arrows are update vectors}
+%	\label{fig:minisample}
+%\end{figure}
 
-\Fref{fig:minisample} schematically shows a small possible scenario after initialisation.
+%\Fref{fig:minisample} schematically shows a small possible scenario after initialisation.
 There, the network layout does not yet reflect our objectives very well as communities are spread apart and mixed.
 We incrementally move the nodes towards a stable minimum of \Fref{eq:score}.
 The direction 
@@ -194,7 +235,34 @@ bend and bundle edges, calculate network "topology" (community density as heatma
 %
 %describe idea of fully neural approach: feed doc2vec and node2vec to second stage network, use that representation only; discuss outcome (nice because fully semantic and no intervention, bad because outcome unpredictable and potentially visually not practical)
 
-\section{Conclusion and Future Work}
+\section{Conclusion and Vision}
+\begin{figure*}
+	%	\centering
+	\begin{tikzpicture}[]
+	\node[draw,anchor=north west,inner sep=1] at (0,0) {%
+		\includegraphics[%
+		trim={0 4cm 0 0.5cm},% left bottom right top
+		clip,%
+		width=0.9\textwidth]{mockup2}%
+	};%
+	\end{tikzpicture}
+	\caption{Semantic landscape of email contents and dominant communication patterns (drawn mockup)}
+	\label{fig:mockup}
+\end{figure*}
+The individuals are represented as nodes positioned such that densely connected communities are visually clustered.
+Edges describe the email traffic, where the opacity and thickness is used to indicate the frequency of messages between the nodes they connect.
+The semantic representations of emails are used to place dots on a background layer which we call the \textit{document landscape}.
+This landscape is used as additional input to the graph layout algorithm, aiming to place a node within corresponding semantic regions.
+The colouring of regions in the landscape is derived from densely connected communities in the communication graph.
+We select representative words for densely populated areas in the landscape, so that users get a rough idea about subjects in that area.
+The aforementioned timestamps of emails can be used to generate a heatmap overlay to show the activity in a certain time interval which is controlled by a slider.
+
+Similar to modern geographical maps, zooming into a region reveals more details.
+In our case, less prominent individuals and their connections are shown along with additional salient phrases from the document landscape.
+Selecting a node will not only highlight connected edges but may also temporarily show more edges which were previously hidden at that zoom level.
+The user will also be able to retrieve documents with the help of a selection rectangle or clicking dots in the document landscape.
+
+
 % fills left column on page 4, right column mostly references
 \begin{itemize}
 	\item nice app of big data to find salient communication structures in semantic space
