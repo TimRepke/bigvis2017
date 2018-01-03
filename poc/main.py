@@ -271,6 +271,8 @@ if __name__ == '__main__':
         except ZeroDivisionError:
             print(p.name, p.id)
 
+    nx.write_graphml(G, 'graph.graphml')
+
     nx_G = G.to_undirected()
     print(nx_G)
     G = node2vec.Graph(nx_G, is_directed=False, p=1, q=1)
