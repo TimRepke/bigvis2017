@@ -192,12 +192,12 @@ Our proposed algorithm to find a stable network layout has three stages, namely 
 \paragraph{Initialising the Landscape.}
 To generate the document landscape, we first process the network graph to roughly determine regions, where documents will be placed.
 Therefore we apply node2vec~\cite{grover2016node2vec} to the communication network and embed each individual's node.
-We separate the graph into communities $\Gamma_i$ using the kernel density of the resulting populated space at threshold $\kappa$, where a higher $\kappa$ results in more, but smaller communities.
-For each community $\Gamma_i$, we calculate the pairwise neighbourhood similarity using euclidean distance between nodes, forming the triangular matrix $\Omega_i$.
+We separate the graph into communities $P_i\subset P$ using the kernel density of the resulting populated space at threshold $\kappa$, where a higher $\kappa$ results in more, but smaller communities.
+For each community $P_i$, pairwise neighbourhood similarities are calculated using euclidean distance between nodes, forming the triangular matrix $S_i$, where $s_{kl}$ is the similarity between $p_k,p_l\in P_i$.
 
 Furthermore, we train document embeddings~\cite{le2014distributed,hu2017} on all emails and use them to infer high dimensional semantic vector representations.
-Let $\Delta_i$ be the set of emails that originated in community $\Gamma_i$.
-For each email in $\Delta_i$ the dimensionality is reduced using t-SNE~\cite{maaten2008visualizing}, which retains possible semantic clusterings of documents in the higher dimensional space.
+Let $M_i$ be the set of emails that originated in community $P_i$.
+For each email $m\in M_i$, the dimensionality is reduced using t-SNE~\cite{maaten2008visualizing}, which retains possible semantic clusterings of documents in the higher dimensional space.
 The resulting two-dimensional vectors are then placed as dots on the map using the centre of embedded network communities as the respective origin, whereas the size is determined by the number of related individuals.
 
 We also initialise communication network's layout.
@@ -209,20 +209,25 @@ Applying a variable threshold $\sigma$ can reduce the computational load in late
 They can be added again as the user requests a detailed visualisation by zooming in or through other interactions.
 
 In the algorithm's second stage, we iteratively try to improve the layout of the communication network by finding a balance between the closeness of nodes to semantic context and densely connected neighbourhoods a node belongs to.
-Therefore, for each individual $\gamma_j$ we use linear regression to fit a line $\delta_{\gamma_j}$ though all two-dimensional vectors of emails he or she has sent or received.
+Therefore, for each individual $p_j\in P$ we use linear regression to fit a line $\widehat{m_{p_j}}$ though all two-dimensional vectors of emails he or she has sent or received.
 As a node is placed near this line, it remains in a semantically good position.
 
 \paragraph{Adjusting the Network Layout.}
 The first stage of our proposed algorithm produces a fixed document landscape and roughly fits the communication network on top. 
 We now aim to incrementally adapt the layout of the graph to better reflect salient structures in the network while keeping each individual's node close to the reflective semantic area in the landscape.
+
 Therefore we define a score quantifying how well the current layout fits these objectives:
 \begin{equation}
-\sum_{\Gamma_i\in\Gamma}\sum_{\gamma_k\in\Gamma_i}\sum_{\gamma_l\in\Gamma}
-\frac{dist(\gamma_k,\gamma_l)}{sim(\gamma_k,\gamma_l)}\theta+dist(\gamma_k, \delta_{\gamma_k})\eta
+\sum_{p_i\in P}
+\bigg[
+\eta~d(p_i, \widehat{m_{p_i}})+
+%\sum_{\substack{p_j\in P\\p_i\sim p_j}}
+\sum_{p_j\in P}
+\theta\left(s_{ij}-d(p_i,p_j)\right)
+\bigg]
 \label{eq:score}
 \end{equation}
-
-where $dist$ is the distance between two nodes (zero if no connection exists) or shortest distance from a node to its ideal line and $sim$ is the similarity of two nodes based on node2vec.
+where $d(\cdot,\cdot)$ is the distance between two nodes (zero if no connection exists) or shortest distance from a node to its ideal line.
 To adjust the layout towards either a better semantic or structural fit, we introduce parameters $\theta$ and $\eta$.
 
 %\begin{figure}
@@ -236,15 +241,32 @@ To adjust the layout towards either a better semantic or structural fit, we intr
 %\end{figure}
 
 %\Fref{fig:minisample} schematically shows a small possible scenario after initialisation.
-There, the network layout does not yet reflect our objectives very well as communities are spread apart and mixed.
-We incrementally move the nodes towards a stable minimum of \Fref{eq:score}.
-The direction 
+%There, the network layout does not yet reflect our objectives very well as communities are spread apart and mixed.
+%We incrementally move the nodes towards a stable minimum of \Fref{eq:score}.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+In order to minimise \Fref{eq:score}, we use stochastic gradient descent.
+In each iteration step, we can derive the direction and magnitude each node should be moved towards a better semantic fit and closer proximity to it's neighbourhood in the network.
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. 
+The semantic gradient for $p_j\in P$ is defined by
+\begin{equation}
+\vec{\delta^s_j}:=  (p_j^m - p_j)~\lVert p_j^m - p_j\rVert
+\label{eq:ds}
+\end{equation}
+where $p_j^m$ is the closest point on $\widehat{m_{p_j}}$ to $p_j$ and $\lVert\cdot\rVert$ denotes the euclidean norm, while neighbourhood gradient is defined by
+\begin{equation}
+\vec{\delta^n_j}:= \sum_{\substack{p_k\in P\\p_j\sim p_k}}(p_j - p_k)~\left(\lVert p_j - p_k\rVert - s_{jk}\right)
+\label{eq:dn}
+\end{equation}
+where $p_j\sim p_k$ denotes that an edge exists between $p_j$ and $p_k$.
 
-Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?   labore et dolore magnam aliquam quaerat.
+With the definitions in \Fref{eq:ds} and \Fref{eq:dn}, we can formulate the update vector $\vec{\delta_j}$ for node $p_j\in P$ as
+\begin{equation}
+\vec{\delta_j}:=\xi\left(\theta\vec{\delta^n_j}+\eta\vec{\delta^s_j}\right)
+\label{eq:dj}
+\end{equation}
+where $\xi$ is the learning rate and $\theta,\eta$ as before parameters to weight between a better semantic or neighbourhood fit.
+
+Most likely, complex network structures might prevent the stochastic gradient descent to find a stable minimum, so the score of the objective function should be monitored or intermediate layouts be visually evaluated to determine a satisfactory result.
 
 \paragraph{Post Processing.}
 Lastly, we use the post processing stage to enhance the readability of our visualisation.
@@ -269,9 +291,7 @@ In order to represent temporal aspects of the data, we calculate the kernel dens
 %\end{itemize}
 %
 %describe idea of fully neural approach: feed doc2vec and node2vec to second stage network, use that representation only; discuss outcome (nice because fully semantic and no intervention, bad because outcome unpredictable and potentially visually not practical)
-
-\section{Conclusion and Vision}
-\begin{figure*}[h]
+\begin{figure*}[h!]
 	%	\centering
 	\begin{tikzpicture}[]
 	\node[draw,anchor=north west,inner sep=1] at (0,0) {%
@@ -284,6 +304,7 @@ In order to represent temporal aspects of the data, we calculate the kernel dens
 	\caption{Semantic landscape of email contents and dominant communication patterns (drawn mockup)}
 	\label{fig:mockup}
 \end{figure*}
+\section{Conclusion and Vision}
 In the previous sections, we described an algorithm to lay out a communication network on top of a landscape of semantically embedded emails.
 This is still work in progress, so \Fref{fig:mockup} shows a manually drawn mock-up of the visualisation we aim for to visually convey our vision.
 In it, individuals are represented as nodes positioned such that densely connected communities are visually clustered.
