@@ -3,12 +3,22 @@
 
 % information society, modern, communication, integral part of daily life, substantial amounts of data, prior research either topics or networks (not both)
 
-In our modern information society, we produce substantial amounts of data each day, where a large portion of it comes from the communication through social media platforms or email.
+% heuzutage viele daten als graph
+% gibt spezielle dbs (neo4j)
+% ein problem graphähnlicher daten: überblick
+% netzdaten twitter, social media, semantic web
+% kontext emails
+% weg von bloß knoten/kanten -> 
+
+In our modern information society we produce substantial amounts of data each day.
+A large portion of it comes from the communication through social media platforms or email.
+
+
 Given a dataset of the exchanged information over a year or more, it is practically impossible to gain an overview or quick insights into the data.
 Journalists, for example, find themselves in this position whenever they receive huge collections of leaked data.
 A system that automatically generates an overview of latent structures and topics may support the exploratory search for potential stories and related documents as well as a basic understanding of the data.
 
-In this paper, we propose an interactive visualisation that positions individuals on a two-dimensional canvas such that it reflects their community in which they communicate along with their the topical relatedness.
+In this paper, we propose an interactive visualisation that positions individuals on a two-dimensional canvas such that it reflects their community in which they communicate along with their topical relatedness.
 Therefore, we utilise document embeddings which project the content of a message into a high dimensional semantic space and graph embeddings, which project nodes in a network graph into a latent space reflecting their relatedness.
 
 The proposed system is best described as an exploratory search engine.
@@ -21,8 +31,9 @@ To our knowledge, prior research only considers either network or text visualisa
 We aim to combine these two approaches so that it can be applied to document collections with an underlying network, such as an email corpus.
 For that goal, we consider the concept of map-like visualisations~\cite{pang2017creating}, which was previously used for both network and text data.
 
+\section{Related Work}
 There are various objectives for network visualisations.
-For example, ContactTrees~\cite{sallaberry2016contact} makes use of the metaphor of a growing tree to show highlight how relationships form and change based on the interactions as branches and leaves.
+For example, ContactTrees~\cite{sallaberry2016contact} makes use of the metaphor of a growing tree to highlight how relationships form and change based on the interactions as branches and leaves.
 Although this reflects temporal aspects of dynamic networks well, it focuses on one person as the root, thus an overview of the entirety of a network is lost.
 A CactusTree~\cite{dang2017cactustree} on the other hand is a technique to represent hierarchical structures with the goal of untangling overlaid bundles of intersecting edges, making distant connections more apparent.
 In networks with evolving relations, higher order dependencies may get lost in traditional visualisations.
