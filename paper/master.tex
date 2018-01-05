@@ -121,8 +121,8 @@ screen
 
 \begin{document}
 \title%
-[Topic-aware Network Visualisation to Explore Organisational Structures]%
-{Who's the Boss? A Topic-aware Network Visualisation to Explore Organisational Structures based on Emails}
+[Topic-aware Network Visualisation]%
+{A Topic-aware Network Visualisation to Explore Large Email Corpora}
 %\titlenote{Produces the permission block, and copyright information}
 %\subtitle{Extended Abstract}
 %\subtitlenote{The full version of the author's guide is available as \texttt{acmart.pdf} document}
@@ -144,11 +144,20 @@ screen
 \email{ralf.krestel@hpi.de}
 
 % The default list of authors is too long for headers.
-\renewcommand{\shortauthors}{T. Repke et al.}
+\renewcommand{\shortauthors}{T. Repke and R. Krestel}
 
 
 \begin{abstract}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed massa enim. Nullam efficitur urna vel aliquam suscipit. Mauris feugiat ut mauris vitae ultrices. Nam varius velit eu fringilla tempus. Quisque non nunc sem. Donec porta odio sit amet ante rutrum ullamcorper. Vivamus ac mauris blandit, rutrum neque et, suscipit urna. Sed commodo scelerisque sapien. Quisque ullamcorper velit sit amet molestie iaculis. Nullam at erat justo. 
+
+Nowadays, more and more large datasets exhibit an intrinsic graph structure.
+While there exist special graph databases to handle ever increasing amounts of nodes and edges, visualising this data becomes unfeasable quickly with growing data.
+In addition, looking at its structure is not sufficient to get an overview of a graph dataset.
+Indeed, visualising additional information about nodes or edges without cluttering the screen is essential.
+In this paper, we propose an interactive visualisation for social networks that positions individuals (nodes) on a two-dimensional canvas such that communities defined by social links (edges) are easily recognizable.
+Furthermore, we visualize topical relatedness between individuals by analyzing information about social links, in our case email communication.
+To this end, we utilise document embeddings, which project the content of an email message into a high dimensional
+semantic space and graph embeddings, which project nodes in a network graph into a latent space reflecting their relatedness.
+
 \end{abstract}
 
 %
