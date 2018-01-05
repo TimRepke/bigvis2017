@@ -9,41 +9,28 @@
 % netzdaten twitter, social media, semantic web
 % kontext emails
 % weg von bloß knoten/kanten -> 
-
 In our modern information society we produce substantial amounts of data each day.
-A large portion of it comes from the communication through social media platforms or email.
+A large portion of it comes from the communication on social media platforms or through emails.
+Special graph databases enable the efficient storage of these large communication networks and provide interfaces to query or analyse the data.
+Visualising networks in their entirety on the other hand is a very challenging task.
+Users investigating a document collection want to find information about \textit{who} talks \textit{to whom} about \textit{what}.
 
+Given the communication data over a year or more, it is practically impossible to gain an overview or quick insights into the latent network structure with a basic approach as shown in \Fref{fig:netvis}.
+Also, in such a traditional network visualisation, information about the content of messages sent between individuals is lost.
 
-Given a dataset of the exchanged information over a year or more, it is practically impossible to gain an overview or quick insights into the data.
-Journalists, for example, find themselves in this position whenever they receive huge collections of leaked data.
-A system that automatically generates an overview of latent structures and topics may support the exploratory search for potential stories and related documents as well as a basic understanding of the data.
+Other approaches use the metaphor of geographical maps~\cite{pang2017creating} to visualise networks for example using topology to reflect connectivity of densely connected social communities.
+The map analogy can also be used visualise the contents of documents by embedding them into a high dimensional semantic space~\cite{le2014distributed} and projecting it on the map as a \textit{document landscape}.
 
-In this paper, we propose an interactive visualisation that positions individuals on a two-dimensional canvas such that it reflects their community in which they communicate along with their topical relatedness.
-Therefore, we utilise document embeddings which project the content of a message into a high dimensional semantic space and graph embeddings, which project nodes in a network graph into a latent space reflecting their relatedness.
-
-The proposed system is best described as an exploratory search engine.
-As such, it is well suited for users unfamiliar with the domain and terminology in the collection at hand and they can iteratively discover new associations to support the information seeking process of an open-ended goal~\cite{white2009exploratory}.
-% p9: exploratory strategies are used continually to allow people to discover new associations, kinds of knowledge, and decision making, they are often motivated by a complex information problem, a poor understanding of terminology and information space structure
-% p10: people engaged in exploratory searches are generally: (1) unfamiliar with the domain of their goal (i.e., need to learn about the topic in order to understand how to achieve their goal);
-% p10: Exploratory search is a specialization of information seeking, which describes the activity of attempting to obtain information through a combination of querying and collection browsing.
-In particular, we focus on visualising the entire collection in one overview in which related aspects are spatially close and therefore reflecting a latent context.
-To our knowledge, prior research only considers either network or text visualisation.
-We aim to combine these two approaches so that it can be applied to document collections with an underlying network, such as an email corpus.
-For that goal, we consider the concept of map-like visualisations~\cite{pang2017creating}, which was previously used for both network and text data.
-
-\section{Related Work}
-There are various objectives for network visualisations.
-For example, ContactTrees~\cite{sallaberry2016contact} makes use of the metaphor of a growing tree to highlight how relationships form and change based on the interactions as branches and leaves.
-Although this reflects temporal aspects of dynamic networks well, it focuses on one person as the root, thus an overview of the entirety of a network is lost.
-A CactusTree~\cite{dang2017cactustree} on the other hand is a technique to represent hierarchical structures with the goal of untangling overlaid bundles of intersecting edges, making distant connections more apparent.
-In networks with evolving relations, higher order dependencies may get lost in traditional visualisations.
-HoNVis~\cite{tao2017honvis} adds nodes to encode dependencies in chains of interactions similar to conditional probabilities.
-Usually though, a communication network has many nodes and overlapping connections already, so Yang et al.~\cite{yang2014overlapping} rather focus on discovering overlapping cores in the network to improve the identification of community boundaries, providing an overview of global latent structures.
+In order to highlight how relationships form and change based on the interactions, ContactTrees~\cite{sallaberry2016contact} use the metaphor of a growing tree.
+Although this reflects temporal aspects of dynamic networks well, it focuses on one person as the root, thus an overview of the entire network is lost.
+CactusTrees~\cite{dang2017cactustree} on the other hand represent hierarchical structures with the goal of untangling overlaid bundles of intersecting edges, making distant connections more apparent.
+As higher order dependencies may get lost in traditional visualisations, HoNVis~\cite{tao2017honvis} adds nodes to encode dependencies in chains of interactions.
+Usually, a communication network has many nodes and overlapping connections already, so Yang et al.~\cite{yang2014overlapping} rather focus on discovering overlapping cores to improve the identification of community boundaries to highlight global latent structures.
 Similarly, Gronemann et al.~\cite{gronemann2012drawing} use the metaphor of islands and hills to visualise clustered graphs, making densely connected communities clearly noticeable.
 The edges are bundled and follow valleys of the resulting topology, thus making relationships between other communities hard to follow.
 MapSets~\cite{efrat2015mapsets} assume a graph that was laid out using embeddings reflecting communities.
 An algorithm then draws regions around clusters of nodes, such that the bounding shapes are contiguous and non-overlapping, but yet abstract.
-Another approach to visualise networks at full scale is to aggregate nodes based on their spatial distribution and thereby allowing for a simple exploration as proposed by Hildenbrand et al.~\cite{hildenbrand2016flexible}, who also added contour lines and heatmap overlays to emphasise latent structures.
+Another approach to visualise networks at full scale is to aggregate nodes based on their spatial distribution and thereby allowing for a simple exploration with contour lines and heatmap overlays to emphasise latent structures as proposed by Hildenbrand et al.~\cite{hildenbrand2016flexible}.
 
 % ==== GRAPH VIS ====
 %\cite{dang2017cactustree}
@@ -65,12 +52,15 @@ Another approach to visualise networks at full scale is to aggregate nodes based
 
 Document visualisation aims to visualise the content, such that users gain quick insights into topics, latent phrases, or trends.
 Tiara~\cite{wei2010tiara} extracts topics and derives time-sensitive keywords to depict evolving subjects over time as stacked plots.
-Other approaches often project documents into a latent space, either using topic models or embeddings.
+Other approaches project documents into a latent space, using topic models or embeddings.
 Creating scatter-plots of embedded documents of a large corpus may result in a very dense and unclear layout, so Chen et al.~\cite{chen2009exemplar} developed an algorithm to reduce over-full visualisations by picking representative documents.
 A different approach is taken by Fortuna et al.~\cite{fortuna2005visualization}, who don't show documents directly, but generate a heatmap of the populated canvas and overlay it with salient phrases at more densely populated areas from the underlying documents in that region.
 Friedl et al.~\cite{fried2014maps} extend that concept by drawing clear lines drawing clear lines between regions and colouring them.
 They also add edges between salient phrases based on co-occurrences in the texts and adjusting their size reflecting the count.
-Most recently Cartograph~\cite{sen2017cartograph} was proposed, which is visually very similar to previous approaches, but uses pre-rendered information of different resolution and map technology to enable a responsive interactive visualisation. Regions are coloured based on underlying ontologies from a knowledge-base.
+Most recently Cartograph~\cite{sen2017cartograph} was proposed, which is visually very similar to previous approaches, but uses pre-rendered information of different resolution and map technology to enable a responsive interactive visualisation.
+Regions are coloured based on underlying ontologies from a knowledge-base.
+
+Merging approaches to visualise networks and text to generate a visualisation reflecting latent structures and topics in one map may significantly improve the exploration of a corpus with an open-ended goal by users unfamiliar with the domain and terminology, as related aspects and individuals are spatially close and therefore reflect a latent context.
 
 % === TEXT VIS ===
 %\cite{wei2010tiara}
@@ -105,12 +95,12 @@ Most recently Cartograph~\cite{sen2017cartograph} was proposed, which is visuall
 
 %introduce topic, challenges, rough goal, related work
 
-\begin{figure*}
+\begin{figure*}[th!]
 	%	\centering
 	\begin{tikzpicture}[]
 	\node[draw,anchor=north west,inner sep=1] at (0,0) {%
 		\includegraphics[%
-		trim={8cm 32cm 1cm 4cm},% left bottom right top
+		trim={8cm 32.5cm 1cm 4cm},% left bottom right top
 		clip,%
 		width=0.9\textwidth]{network}%
 	};%
@@ -143,12 +133,12 @@ From the wide range of possibilities, we strive for a system which supports the 
 
 In our system, we use the names and email addresses of senders and recipients (\textit{individuals}), communication network, semantic vector representations of email contents, and as part of an overlay the timestamps of emails and propose a graph layout over a document landscape that visually describes \textit{who} talks \textit{with whom} about \textit{what}. 
 
-\begin{figure*}
+\begin{figure*}[th!]
 	%	\centering
 	\begin{tikzpicture}[]
 	\node[draw,anchor=north west,inner sep=1] at (0,0) {%
 		\includegraphics[%
-		trim={1cm 13.5cm 20cm 10cm},% left bottom right top
+		trim={1cm 14cm 20cm 10cm},% left bottom right top
 		clip,%
 		width=0.9\textwidth]{poc}%
 	};%
@@ -302,12 +292,12 @@ In order to represent temporal aspects of the data, we calculate the kernel dens
 %\end{itemize}
 %
 %describe idea of fully neural approach: feed doc2vec and node2vec to second stage network, use that representation only; discuss outcome (nice because fully semantic and no intervention, bad because outcome unpredictable and potentially visually not practical)
-\begin{figure*}[h!]
+\begin{figure*}[th!]
 	%	\centering
 	\begin{tikzpicture}[]
 	\node[draw,anchor=north west,inner sep=1] at (0,0) {%
 		\includegraphics[%
-		trim={0 4cm 0 0.5cm},% left bottom right top
+		trim={0 4.5cm 0 0.5cm},% left bottom right top
 		clip,%
 		width=0.9\textwidth]{mockup2}%
 	};%
