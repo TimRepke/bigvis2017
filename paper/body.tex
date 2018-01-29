@@ -13,15 +13,13 @@ In our modern information society we produce substantial amounts of data each da
 A large portion of it comes from the communication on social media platforms or through emails.
 Special graph databases enable the efficient storage of these large communication networks and provide interfaces to query or analyse the data.
 Visualising networks in their entirety on the other hand is a very challenging task.
-Users investigating a document collection want to find information about \textit{who} talks \textit{to whom} about \textit{what}.
+Users investigating a document collection want to find information about \textit{when} does \textit{who} talk \textit{to whom} about \textit{what}.
 
 Given the communication data over a year or more, it is practically impossible to gain an overview or quick insights into the latent network structure with a basic approach as shown in \Fref{fig:netvis}.
-Also, in such a traditional network visualisation, information about the content of messages sent between individuals is lost.
-
-Other approaches use the metaphor of geographical maps~\cite{pang2017creating} to visualise networks for example using topology to reflect connectivity of densely connected social communities.
-The map analogy can also be used visualise the contents of documents by embedding them into a high dimensional semantic space~\cite{le2014distributed} and projecting it on the map as a \textit{document landscape}.
-
-In order to highlight how relationships form and change based on the interactions, ContactTrees~\cite{sallaberry2016contact} use the metaphor of a growing tree.
+Also, in such a traditional \textit{network visualisation}, information about the content of messages sent between individuals is lost.
+Besides these traditional systems, more exotic approaches use the metaphor of geographical maps~\cite{pang2017creating} to visualise networks, for example using topology to reflect connectivity of densely connected social communities.
+The map analogy can also be used to visualise the contents of documents by embedding them into a high dimensional semantic space~\cite{le2014distributed} and projecting it on the map as a \textit{document landscape}.
+In order to highlight how relationships form and change based on the interactions, the metaphor of a growing tree ca be used (ContactTrees~\cite{sallaberry2016contact}).
 Although this reflects temporal aspects of dynamic networks well, it focuses on one person as the root, thus an overview of the entire network is lost.
 CactusTrees~\cite{dang2017cactustree} on the other hand represent hierarchical structures with the goal of untangling overlaid bundles of intersecting edges, making distant connections more apparent.
 As higher order dependencies may get lost in traditional visualisations, HoNVis~\cite{tao2017honvis} adds nodes to encode dependencies in chains of interactions.
@@ -50,17 +48,34 @@ Another approach to visualise networks at full scale is to aggregate nodes based
 %\cite{hildenbrand2016flexible}
 %aggregates nodes based on their spatial distribution, thereby allowing for visual exploration of large graphs, contour lines/heatmap
 
-Document visualisation aims to visualise the content, such that users gain quick insights into topics, latent phrases, or trends.
+\begin{figure*}[tp!]
+	%	\centering
+	\begin{tikzpicture}[]
+	\node[draw,anchor=north west,inner sep=1] at (0,0) {%
+		\includegraphics[%
+		trim={8cm 32.5cm 1cm 4cm},% left bottom right top
+		clip,%
+		width=0.8\textwidth]{network}%
+	};%
+	\end{tikzpicture}
+	\caption{Traditional basic visualisation of a communication graph from 2000 emails using force layout}
+	\label{fig:netvis}
+\end{figure*}
+
+
+\textit{Document visualisation} aims to visualise the content, such that users gain quick insights into topics, latent phrases, or trends.
 Tiara~\cite{wei2010tiara} extracts topics and derives time-sensitive keywords to depict evolving subjects over time as stacked plots.
 Other approaches project documents into a latent space, using topic models or embeddings.
 Creating scatter-plots of embedded documents of a large corpus may result in a very dense and unclear layout, so Chen et al.~\cite{chen2009exemplar} developed an algorithm to reduce over-full visualisations by picking representative documents.
-A different approach is taken by Fortuna et al.~\cite{fortuna2005visualization}, who don't show documents directly, but generate a heatmap of the populated canvas and overlay it with salient phrases at more densely populated areas from the underlying documents in that region.
-Friedl et al.~\cite{fried2014maps} extend that concept by drawing clear lines drawing clear lines between regions and colouring them.
-They also add edges between salient phrases based on co-occurrences in the texts and adjusting their size reflecting the count.
+A different approach is taken by Fortuna et al.~\cite{fortuna2005visualization}, who do not show documents directly, but generate a heatmap of the populated canvas and overlay it with salient phrases at more densely populated areas from the underlying documents in that region.
+Friedl et al.~\cite{fried2014maps} extend that concept by drawing clear lines between regions and colouring them.
+They also add edges between salient phrases based on co-occurrences in the texts.
 Most recently Cartograph~\cite{sen2017cartograph} was proposed, which is visually very similar to previous approaches, but uses pre-rendered information of different resolution and map technology to enable a responsive interactive visualisation.
 Regions are coloured based on underlying ontologies from a knowledge-base.
 
-Merging approaches to visualise networks and text to generate a visualisation reflecting latent structures and topics in one map may significantly improve the exploration of a corpus with an open-ended goal by users unfamiliar with the domain and terminology, as related aspects and individuals are spatially close and therefore reflect a latent context.
+Our goal is to \textit{merge approaches for network and document visualisations} in one interactive user interface.
+Giving an overview over latent structures and topics in one map may significantly improve the exploration of a corpus by users unfamiliar with the domain and terminology.
+Application scenarios that could benefit from such a multi-dimensional view include investigative journalists and auditing firms.
 
 % === TEXT VIS ===
 %\cite{wei2010tiara}
@@ -95,43 +110,28 @@ Merging approaches to visualise networks and text to generate a visualisation re
 
 %introduce topic, challenges, rough goal, related work
 
-\begin{figure*}[th!]
-	%	\centering
-	\begin{tikzpicture}[]
-	\node[draw,anchor=north west,inner sep=1] at (0,0) {%
-		\includegraphics[%
-		trim={8cm 32.5cm 1cm 4cm},% left bottom right top
-		clip,%
-		width=0.9\textwidth]{network}%
-	};%
-	\end{tikzpicture}
-	\caption{Traditional basic visualisation of a communication graph from 2000 emails using force layout}
-	\label{fig:netvis}
-\end{figure*}
-
 \section{Interactive Visualisation}
 % this section fills second page (inkl mockup)
 % describe objectives and what data is available and how that can be used
-Systems for document exploration largely vary in what they display and how the user interacts with them.
-Part of that is dependent on the available raw data, but also information extracted from preprocessing or enrichment with external sources, though the final design is primarily dictated by the objectives users have.
+Systems for document exploration largely vary in what they display and how users interact with them.
+This depends partly on the available raw data, but also on information extracted from pre-processing or enrichment with external sources.
 \Fref{fig:netvis} shows a basic visualisation of the network graph extracted from an email corpus.
 Although it is an improvement over only listing connections, large densely connected graphs quickly become hard to read and information about the email contents is lost.
 
-For document exploration, we distinguish between bottom-up approaches, in which users initiate an exploration from a specific document or entity, and top-down approaches, where the system provides abstract overviews of the entire document collection and users incrementally refine the search, narrowing in to just a few documents.
-While a bottom-up approach can provide detailed information from the start, it requires a-priori knowledge by the user.
-In contrast, a top-down approach may help users without prior knowledge to get a sense for the data by visualising high level latent structures of communication networks or the topical distributions.
+Exploring document collections can be seen as a top-down approach, where the system provides abstract overviews of the entire document collection and users incrementally refine the search, narrowing the results to just a few documents of interest.
+Such a top-down approach may help users without prior knowledge to get a sense for the data by visualising high level latent structures of communication networks or the topical distributions.
 
 In the scope of this work we primarily consider documents to be emails or data attached to them.
 The sender, recipients, time, and content can directly be extracted from the raw data.
 We call these -- and results from further processing -- \textit{dimensions} that can be visualised.
-From the contents one may infer named entities, topics, embeddings, or salient phrases from the content, while the communication network spanned by sender-recipient pairs can be used to detect salient structures and hierarchies.
+From the contents one may infer named entities, topics, embeddings, or salient phrases, while the communication network spanned by sender-recipient pairs can be used to detect salient structures and hierarchies.
 The temporal information enables the previously mentioned data to be analysed over time to detect evolving or changing patterns.
 
 There are numerous ways to visualise each dimension on its own or in combination with others.
 The requirement of a dimension and its priority in a visualisation is dictated by the system objective.
 From the wide range of possibilities, we strive for a system which supports the exploration of a large collection of documents without any prior knowledge about its content and individuals involved.
 
-In our system, we use the names and email addresses of senders and recipients (\textit{individuals}), communication network, semantic vector representations of email contents, and as part of an overlay the timestamps of emails and propose a graph layout over a document landscape that visually describes \textit{who} talks \textit{with whom} about \textit{what}. 
+In our system, we use the names and email addresses of senders and recipients (\textit{individuals}), communication network, semantic vector representations of email contents, and as part of an overlay the timestamps of emails and propose a graph layout over a document landscape that visually describes \textit{who} talks \textit{with whom} about \textit{what} at a given \textit{time period}. 
 
 \begin{figure*}[th!]
 	%	\centering
@@ -140,7 +140,7 @@ In our system, we use the names and email addresses of senders and recipients (\
 		\includegraphics[%
 		trim={1cm 14cm 20cm 10cm},% left bottom right top
 		clip,%
-		width=0.9\textwidth]{poc}%
+		width=0.8\textwidth]{poc}%
 	};%
 	\end{tikzpicture}
 	\caption{Rendered prototype output after landscape initialisation without prior community segmentation}
@@ -154,7 +154,8 @@ In our system, we use the names and email addresses of senders and recipients (\
 \section{System Architecture}
 % fills full page 3 and max the first half of left column page 4
 %describe concrete system and outline algorithmic approach
-Visualising communication networks in a topic-aware fashion to explore documents and salient structures is not straight forward, as different layout objectives may produce contradicting results and the challenges of processing big data~\cite{bikakis2016exploration}.
+Visualising communication networks in a topic-aware fashion to explore documents and salient structures is not straightforward
+Different layout objectives may produce contradicting results and the challenges of processing big data need to be addressed~\cite{bikakis2016exploration}.
 In this section, we describe algorithmic approaches behind the system we are working on.
 For a discussion of engineering aspects on how to store, serve, and render the map-like data, we refer to the Cartograph~stack~\cite{sen2017cartograph}, as we will focus on the process how to get the information that the map is generated from.
 % self citation -> quagga for preprocessing?
@@ -163,7 +164,7 @@ We visualise the embedded emails as dots in a two-dimensional landscape in which
 All emails between two individuals are reduced into one edge reducing visual complexity and making it easier to detect salient structures.
 However, that comes with the trade-off that nodes and edges cannot be perfectly placed in the landscape to cover all semantic aspects of the communication between them, but rather an estimate.
 Our very early prototype placed some individuals with no dominant topic in a crowded area in the centre of the landscape as shown in \Fref{fig:poc}, where colours of opaque dots for emails correspond to that of the sender.
-Although the network visualisation at this point doesn't make connections more clear than in \Fref{fig:netvis}, users can already distinguish individuals with similar or unrelated topics.
+Although the network visualisation at this point does not make connections more clear than in \Fref{fig:netvis}, users can already distinguish individuals with similar or unrelated topics.
 
 Our proposed algorithm to find a stable network layout has three stages, namely an \textit{(i) initialisation phase} which creates the landscape and roughly places nodes and connections, an \textit{(ii) update phase} which iteratively updates the node placement towards a better fit, and finally a \textit{(iii) post processing phase} where edges become splines to make latent structures more clear and a map topology is added.
 
@@ -269,11 +270,27 @@ where $\xi$ is the learning rate and $\theta,\eta$ as before parameters to weigh
 
 Most likely, complex network structures might prevent the stochastic gradient descent to find a stable minimum, so the score of the objective function should be monitored or intermediate layouts be visually evaluated to determine a satisfactory result.
 
+\begin{figure*}[th!]
+	%	\centering
+	\begin{tikzpicture}[]
+	\node[draw,anchor=north west,inner sep=1] at (0,0) {%
+		\includegraphics[%
+		trim={0 4.5cm 0 0.5cm},% left bottom right top
+		clip,%
+		width=0.8\textwidth]{mockup2}%
+	};%
+	\end{tikzpicture}
+	\caption{Semantic landscape of email contents and dominant communication patterns (drawn mockup)}
+	\label{fig:mockup}
+\end{figure*}
+
 \paragraph{Post Processing.}
 Lastly, we use the post processing stage to enhance the readability of our visualisation.
-Densely connected communities in the graph are potentially hard to read, thus we apply edge bundling~\cite{bach2017towards} visually clear latent structures.
+Densely connected communities in the graph are potentially hard to read, thus we apply edge bundling~\cite{bach2017towards} to visually clear latent structures.
 We also apply MapSets~\cite{efrat2015mapsets} to separate the regions for each community.
 Since semantically similar emails may appear in different communities, we apply colouring based on clusters in the original global document embedding space to retain this aspect.
+Choosing the colours depends on the number of latent topics that should be depicted~\cite{zeileis2009escaping}.
+If the topic number exceeds 25-30 topics, grouping topics and allowing for zooming within a two-level topic-hierarchy ensures distinguishable colors for up to 10 subtopics ($25 \times 10=25$).
 In order to represent temporal aspects of the data, we calculate the kernel density of the document landscape for fixed time-intervals, which can be used to add heat-map overlays that users can select later on. 
 
 % bend and bundle edges , calculate network "topology" (community density as heatmap or topological lines), colour the graph (using topic clustering in case layout isn't close to landscape or community colouring if communities aren't visually close enough -> future research)
@@ -292,19 +309,7 @@ In order to represent temporal aspects of the data, we calculate the kernel dens
 %\end{itemize}
 %
 %describe idea of fully neural approach: feed doc2vec and node2vec to second stage network, use that representation only; discuss outcome (nice because fully semantic and no intervention, bad because outcome unpredictable and potentially visually not practical)
-\begin{figure*}[th!]
-	%	\centering
-	\begin{tikzpicture}[]
-	\node[draw,anchor=north west,inner sep=1] at (0,0) {%
-		\includegraphics[%
-		trim={0 4.5cm 0 0.5cm},% left bottom right top
-		clip,%
-		width=0.9\textwidth]{mockup2}%
-	};%
-	\end{tikzpicture}
-	\caption{Semantic landscape of email contents and dominant communication patterns (drawn mockup)}
-	\label{fig:mockup}
-\end{figure*}
+
 \section{Conclusion and Vision}
 In the previous sections, we described an algorithm to lay out a communication network on top of a landscape of semantically embedded emails.
 This is still work in progress, so \Fref{fig:mockup} shows a manually drawn mock-up of the visualisation we aim for to visually convey our vision.
@@ -326,7 +331,7 @@ The user will also be able to retrieve documents with the help of a selection re
 In future work, we hope to evaluate this system using full-scale real-world data.
 It may also be interesting to experiment with embedding methods, which take both the emails and the network graph as input and directly project the inferred representations into the two-dimensional landscape to simplify the proposed algorithm.
 
-We belief, that such a system enables users to quickly gain an overview of relationship between communicating individuals and their semantic context.
+We belief that such a system enables users to quickly gain an overview of relationships between communicating individuals and their semantic context.
 This approach may for example help journalists to not only get an initial understanding of large amounts of leaked data, but also help them later on for in-depth investigations.
 
 % fills left column on page 4, right column mostly references
