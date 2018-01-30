@@ -13,9 +13,12 @@ In our modern information society we produce substantial amounts of data each da
 A large portion of it comes from the communication on social media platforms or through emails.
 Special graph databases enable the efficient storage of these large communication networks and provide interfaces to query or analyse the data.
 Visualising networks in their entirety on the other hand is a very challenging task.
-Users investigating a document collection want to find information about \textit{when} does \textit{who} talk \textit{to whom} about \textit{what}.
+Users investigating a communication network want to find information about \textit{when} does \textit{who} communicate \textit{with whom} about \textit{what}.
+These kind of networks can be found in many different shapes.
+Modern social networks, such as Twitter or Facebook exhibit similar structures as classic, offline social networks~\cite{subrahmanyam2008online}.
+We investigate another type of social network: a collection of emails.
 
-Given the communication data over a year or more, it is practically impossible to gain an overview or quick insights into the latent network structure with a basic approach as shown in \Fref{fig:netvis}.
+Given the communication data over a year or more, it is practically impossible to gain an overview or quick insights into the latent network structure with a basic approach as shown in \ref{fig:netvis}.
 Also, in such a traditional \textit{network visualisation}, information about the content of messages sent between individuals is lost.
 Besides these traditional systems, more exotic approaches use the metaphor of geographical maps~\cite{pang2017creating} to visualise networks, for example using topology to reflect connectivity of densely connected social communities.
 The map analogy can also be used to visualise the contents of documents by embedding them into a high dimensional semantic space~\cite{le2014distributed} and projecting it on the map as a \textit{document landscape}.
@@ -55,7 +58,7 @@ Another approach to visualise networks at full scale is to aggregate nodes based
 		\includegraphics[%
 		trim={8cm 32.5cm 1cm 4cm},% left bottom right top
 		clip,%
-		width=0.8\textwidth]{network}%
+		width=.9\textwidth]{network}%
 	};%
 	\end{tikzpicture}
 	\caption{Traditional basic visualisation of a communication graph from 2000 emails using force layout}
@@ -74,8 +77,14 @@ Most recently Cartograph~\cite{sen2017cartograph} was proposed, which is visuall
 Regions are coloured based on underlying ontologies from a knowledge-base.
 
 Our goal is to \textit{merge approaches for network and document visualisations} in one interactive user interface.
+This means to integrate multiple dimensions of email datasets including time, interactions, users and topics into a 2D map representation.
 Giving an overview over latent structures and topics in one map may significantly improve the exploration of a corpus by users unfamiliar with the domain and terminology.
-Application scenarios that could benefit from such a multi-dimensional view include investigative journalists and auditing firms.
+Also domain experts could benefit from such an overview, e.g.\ by easily being able to identify global patterns in the data.
+
+A specific application scenario that could benefit from such integrated, interactive visualisations is the analysis of large, unstructured, heterogeneous data collections.
+Data-driven journalism~\cite{coddington2015clarifying} often has to deal with leaked, unstructured, very heterogeneous data, e.g. in the context of the Panama Papers, where journalists needed to untangle and order huge amounts of information, search entities, and visualise found patterns~\cite{chabin2017panama}.
+Similar datasets are of interest in the context of computational forensics~\cite{franke2007computational}.
+Auditing firms and law enforcement need to sift through huge amounts of data to gather evidence of criminal activity, often involving communication networks and documents~\cite{karthik2008intelligent}.
 
 % === TEXT VIS ===
 %\cite{wei2010tiara}
@@ -115,7 +124,7 @@ Application scenarios that could benefit from such a multi-dimensional view incl
 % describe objectives and what data is available and how that can be used
 Systems for document exploration largely vary in what they display and how users interact with them.
 This depends partly on the available raw data, but also on information extracted from pre-processing or enrichment with external sources.
-\Fref{fig:netvis} shows a basic visualisation of the network graph extracted from an email corpus.
+\ref{fig:netvis} shows a basic visualisation of the network graph extracted from an email corpus.
 Although it is an improvement over only listing connections, large densely connected graphs quickly become hard to read and information about the email contents is lost.
 
 Exploring document collections can be seen as a top-down approach, where the system provides abstract overviews of the entire document collection and users incrementally refine the search, narrowing the results to just a few documents of interest.
@@ -140,7 +149,7 @@ In our system, we use the names and email addresses of senders and recipients (\
 		\includegraphics[%
 		trim={1cm 14cm 20cm 10cm},% left bottom right top
 		clip,%
-		width=0.8\textwidth]{poc}%
+		width=.9\textwidth]{poc}%
 	};%
 	\end{tikzpicture}
 	\caption{Rendered prototype output after landscape initialisation without prior community segmentation}
@@ -163,8 +172,8 @@ For a discussion of engineering aspects on how to store, serve, and render the m
 We visualise the embedded emails as dots in a two-dimensional landscape in which individuals are placed as nodes connected by edges.
 All emails between two individuals are reduced into one edge reducing visual complexity and making it easier to detect salient structures.
 However, that comes with the trade-off that nodes and edges cannot be perfectly placed in the landscape to cover all semantic aspects of the communication between them, but rather an estimate.
-Our very early prototype placed some individuals with no dominant topic in a crowded area in the centre of the landscape as shown in \Fref{fig:poc}, where colours of opaque dots for emails correspond to that of the sender.
-Although the network visualisation at this point does not make connections more clear than in \Fref{fig:netvis}, users can already distinguish individuals with similar or unrelated topics.
+Our very early prototype placed some individuals with no dominant topic in a crowded area in the centre of the landscape as shown in \ref{fig:poc}, where colours of opaque dots for emails correspond to that of the sender.
+Although the network visualisation at this point does not make connections more clear than in \ref{fig:netvis}, users can already distinguish individuals with similar or unrelated topics.
 
 Our proposed algorithm to find a stable network layout has three stages, namely an \textit{(i) initialisation phase} which creates the landscape and roughly places nodes and connections, an \textit{(ii) update phase} which iteratively updates the node placement towards a better fit, and finally a \textit{(iii) post processing phase} where edges become splines to make latent structures more clear and a map topology is added.
 
@@ -242,11 +251,11 @@ To adjust the layout towards either a better semantic or structural fit, we intr
 %	\label{fig:minisample}
 %\end{figure}
 
-%\Fref{fig:minisample} schematically shows a small possible scenario after initialisation.
+%\ref{fig:minisample} schematically shows a small possible scenario after initialisation.
 %There, the network layout does not yet reflect our objectives very well as communities are spread apart and mixed.
-%We incrementally move the nodes towards a stable minimum of \Fref{eq:score}.
+%We incrementally move the nodes towards a stable minimum of \ref{eq:score}.
 
-In order to minimise \Fref{eq:score}, we use stochastic gradient descent.
+In order to minimise \ref{eq:score}, we use stochastic gradient descent.
 In each iteration step, we can derive the direction and magnitude each node should be moved towards a better semantic fit and closer proximity to it's neighbourhood in the network.
 
 The semantic gradient for $p_j\in P$ is defined by
@@ -261,7 +270,7 @@ where $p_j^m$ is the closest point on $\widehat{m_{p_j}}$ to $p_j$ and $\lVert\c
 \end{equation}
 where $p_j\sim p_k$ denotes that an edge exists between $p_j$ and $p_k$.
 
-With the definitions in \Fref{eq:ds} and \Fref{eq:dn}, we can formulate the update vector $\vec{\delta_j}$ for node $p_j\in P$ as
+With the definitions in \ref{eq:ds} and \ref{eq:dn}, we can formulate the update vector $\vec{\delta_j}$ for node $p_j\in P$ as
 \begin{equation}
 \vec{\delta_j}:=\xi\left(\theta\vec{\delta^n_j}+\eta\vec{\delta^s_j}\right)
 \label{eq:dj}
@@ -277,7 +286,7 @@ Most likely, complex network structures might prevent the stochastic gradient de
 		\includegraphics[%
 		trim={0 4.5cm 0 0.5cm},% left bottom right top
 		clip,%
-		width=0.8\textwidth]{mockup2}%
+		width=.9\textwidth]{mockup2}%
 	};%
 	\end{tikzpicture}
 	\caption{Semantic landscape of email contents and dominant communication patterns (drawn mockup)}
@@ -311,28 +320,27 @@ In order to represent temporal aspects of the data, we calculate the kernel dens
 %describe idea of fully neural approach: feed doc2vec and node2vec to second stage network, use that representation only; discuss outcome (nice because fully semantic and no intervention, bad because outcome unpredictable and potentially visually not practical)
 
 \section{Conclusion and Vision}
-In the previous sections, we described an algorithm to lay out a communication network on top of a landscape of semantically embedded emails.
-This is still work in progress, so \Fref{fig:mockup} shows a manually drawn mock-up of the visualisation we aim for to visually convey our vision.
+
+In this paper, we described an algorithm to lay out a communication network on top of a landscape of semantically embedded emails.
+This is still work in progress, thus \ref{fig:mockup} shows only a manually drawn mock-up of the visualisation we envision.
 In it, individuals are represented as nodes positioned such that densely connected communities are visually clustered.
 Edges describe the email traffic, where the opacity and thickness is used to indicate the frequency of messages between the nodes they connect.
 
 The semantic representations of emails are used to place dots on a background layer which we call the \textit{document landscape}.
 This landscape is used as additional input to the graph layout algorithm, aiming to place a node within corresponding semantic regions.
 The colouring of regions in the landscape is derived from densely connected communities in the communication graph.
-
 Optionally, representative words are selected for densely populated areas in the landscape, so that users get a rough idea about subjects in that area.
 The aforementioned timestamps of emails can be used to generate a heatmap overlay to show the activity in a certain time interval which is controlled by a slider.
-
 Similar to modern geographical maps, zooming into a region reveals more details.
 In our case, less prominent individuals and their connections are shown along with additional salient phrases from the document landscape.
 Selecting a node will not only highlight connected edges but may also temporarily show more edges which were previously hidden at that zoom level.
 The user will also be able to retrieve documents with the help of a selection rectangle or clicking dots in the document landscape.
 
-In future work, we hope to evaluate this system using full-scale real-world data.
+In future work, we hope to evaluate this system using full-scale real-world data as well as practitioners from journalism and auditing.
 It may also be interesting to experiment with embedding methods, which take both the emails and the network graph as input and directly project the inferred representations into the two-dimensional landscape to simplify the proposed algorithm.
 
-We belief that such a system enables users to quickly gain an overview of relationships between communicating individuals and their semantic context.
-This approach may for example help journalists to not only get an initial understanding of large amounts of leaked data, but also help them later on for in-depth investigations.
+%We belief that such a system enables users to quickly gain an overview of relationships between communicating individuals and their semantic context.
+%This approach may for example help journalists to not only get an initial understanding of large amounts of leaked data, but also help them later on for in-depth investigations.
 
 % fills left column on page 4, right column mostly references
 %\begin{itemize}
