@@ -1,13 +1,24 @@
-\documentclass[sigconf,
-review,
-anonymous,
-%draft,
-%authorversion,
-screen
-]{acmart}
+\documentclass[sigconf,edbt]{acmart-edbt-workshops}
 
 \usepackage{booktabs} % For formal tables
-%\usepackage{balance}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEGIN Copyright for EDBT/ICDT Workshops
+% Please do not change the copyright instructions.
+\setcopyright{rightsretained}
+% DOI
+\acmDOI{}
+% ISBN
+\acmISBN{1613-0073}
+%Conference
+\acmConference[EDBT/ICDT 2018 Workshops]{EDBT/ICDT 2018 Joint Conference}{March 26, 2018}{Vienna, Austria} 
+\acmYear{2018}
+\settopmatter{printacmref=false, printccs=false, printfolios=false}
+\pagestyle{empty} % removes running headers
+% END Copyright for EDBT/ICDT Workshops
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \usepackage{pgfplots}
 \usepackage{tikzscale}
@@ -15,108 +26,72 @@ screen
 
 % ----------------------
 % fancyref
-\usepackage[plain]{fancyref}
-
-\newcommand*{\fancyrefalglabelprefix}{alg}
-\newcommand*{\fancyreflstlabelprefix}{lst}
-\newcommand*{\fancyrefapplabelprefix}{app}
-
-\fancyrefaddcaptions{english}{%
-	\providecommand*{\frefalgname}{algorithm}%
-	\providecommand*{\Frefalgname}{Algorithm}%
-	%
-	\providecommand*{\freflstname}{listing}%
-	\providecommand*{\Freflstname}{Listing}%
-	%
-	\providecommand*{\frefappname}{appendix}%
-	\providecommand*{\Frefappname}{Appendix}%
-}%
-
-\frefformat{plain}{\fancyrefalglabelprefix}{%
-	\frefalgname\fancyrefdefaultspacing#1%
-}%
-\Frefformat{plain}{\fancyrefalglabelprefix}{%
-	\Frefalgname\fancyrefdefaultspacing#1%
-}
-\frefformat{vario}{\fancyrefalglabelprefix}{%
-	\frefalgname\fancyrefdefaultspacing#1#3%
-}%
-\Frefformat{vario}{\fancyrefalglabelprefix}{%
-	\Frefalgname\fancyrefdefaultspacing#1#3%
-}%
-
-\frefformat{plain}{\fancyreflstlabelprefix}{%
-	\freflstname\fancyrefdefaultspacing#1%
-}%
-\Frefformat{plain}{\fancyreflstlabelprefix}{%
-	\Freflstname\fancyrefdefaultspacing#1%
-}
-\frefformat{vario}{\fancyreflstlabelprefix}{%
-	\freflstname\fancyrefdefaultspacing#1#3%
-}%
-\Frefformat{vario}{\fancyreflstlabelprefix}{%
-	\Freflstname\fancyrefdefaultspacing#1#3%
-}%
-
-\frefformat{plain}{\fancyrefapplabelprefix}{%
-	\frefappname\fancyrefdefaultspacing#1%
-}%
-\Frefformat{plain}{\fancyrefapplabelprefix}{%
-	\Frefappname\fancyrefdefaultspacing#1%
-}
-\frefformat{vario}{\fancyrefapplabelprefix}{%
-	\frefappname\fancyrefdefaultspacing#1#3%
-}%
-\Frefformat{vario}{\fancyrefapplabelprefix}{%
-	\Frefappname\fancyrefdefaultspacing#1#3%
-}%
-
-
-
-\newcommand{\dummyfig}[3]{
-	\centering
-	\fbox{
-		\begin{minipage}[c][#1\textheight][c]{#2\textwidth}
-			\centering{#3}
-		\end{minipage}
-	}
-}
-
-
-% Copyright
-%\setcopyright{none}
-%\setcopyright{acmcopyright}
-%\setcopyright{acmlicensed}
-%\setcopyright{rightsretained}
-%\setcopyright{usgov}
-%\setcopyright{usgovmixed}
-%\setcopyright{cagov}
-%\setcopyright{cagovmixed}
-\copyrightyear{2018} 
-\acmYear{2018} 
-\setcopyright{acmcopyright}
-
-% DOI
-%\acmDOI{10.475/123_4}
-
-% ISBN
-%\acmISBN{123-4567-24-567/08/06}
-
-%Conference
-\acmConference[BigVis'18]{International Workshop on Big Data Visual Exploration and Analytics at EDBT/ICDT}{March 2018}{Vienna, Austria} 
-
-%\acmYear{1997}
-%\copyrightyear{2016}
-
-
-%\acmArticle{4}
-\acmPrice{00.00}
-
-% These commands are optional
-%\acmBooktitle{Transactions of the ACM Woodstock conference}
-%\editor{Jennifer B. Sartor}
-%\editor{Theo D'Hondt}
-%\editor{Wolfgang De Meuter}
+%\usepackage[plain]{fancyref}
+%
+%\newcommand*{\fancyrefalglabelprefix}{alg}
+%\newcommand*{\fancyreflstlabelprefix}{lst}
+%\newcommand*{\fancyrefapplabelprefix}{app}
+%
+%\fancyrefaddcaptions{english}{%
+%	\providecommand*{\frefalgname}{algorithm}%
+%	\providecommand*{\Frefalgname}{Algorithm}%
+%	%
+%	\providecommand*{\freflstname}{listing}%
+%	\providecommand*{\Freflstname}{Listing}%
+%	%
+%	\providecommand*{\frefappname}{appendix}%
+%	\providecommand*{\Frefappname}{Appendix}%
+%}%
+%
+%\frefformat{plain}{\fancyrefalglabelprefix}{%
+%	\frefalgname\fancyrefdefaultspacing#1%
+%}%
+%\Frefformat{plain}{\fancyrefalglabelprefix}{%
+%	\Frefalgname\fancyrefdefaultspacing#1%
+%}
+%\frefformat{vario}{\fancyrefalglabelprefix}{%
+%	\frefalgname\fancyrefdefaultspacing#1#3%
+%}%
+%\Frefformat{vario}{\fancyrefalglabelprefix}{%
+%	\Frefalgname\fancyrefdefaultspacing#1#3%
+%}%
+%
+%\frefformat{plain}{\fancyreflstlabelprefix}{%
+%	\freflstname\fancyrefdefaultspacing#1%
+%}%
+%\Frefformat{plain}{\fancyreflstlabelprefix}{%
+%	\Freflstname\fancyrefdefaultspacing#1%
+%}
+%\frefformat{vario}{\fancyreflstlabelprefix}{%
+%	\freflstname\fancyrefdefaultspacing#1#3%
+%}%
+%\Frefformat{vario}{\fancyreflstlabelprefix}{%
+%	\Freflstname\fancyrefdefaultspacing#1#3%
+%}%
+%
+%\frefformat{plain}{\fancyrefapplabelprefix}{%
+%	\frefappname\fancyrefdefaultspacing#1%
+%}%
+%\Frefformat{plain}{\fancyrefapplabelprefix}{%
+%	\Frefappname\fancyrefdefaultspacing#1%
+%}
+%\frefformat{vario}{\fancyrefapplabelprefix}{%
+%	\frefappname\fancyrefdefaultspacing#1#3%
+%}%
+%\Frefformat{vario}{\fancyrefapplabelprefix}{%
+%	\Frefappname\fancyrefdefaultspacing#1#3%
+%}%
+%
+%
+%
+%\newcommand{\dummyfig}[3]{
+%	\centering
+%	\fbox{
+%		\begin{minipage}[c][#1\textheight][c]{#2\textwidth}
+%			\centering{#3}
+%		\end{minipage}
+%	}
+%}
 
 
 \begin{document}
